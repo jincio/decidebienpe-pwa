@@ -1,0 +1,106 @@
+[
+    {
+      "codigo": 1,
+      "region": "AMAZONAS"
+    },
+    {
+      "codigo": 2,
+      "region": "ANCASH"
+    },
+    {
+      "codigo": 3,
+      "region": "APURIMAC"
+    },
+    {
+      "codigo": 4,
+      "region": "AREQUIPA"
+    },
+    {
+      "codigo": 5,
+      "region": "AYACUCHO"
+    },
+    {
+      "codigo": 6,
+      "region": "CAJAMARCA"
+    },
+    {
+      "codigo": 7,
+      "region": "CALLAO"
+    },
+    {
+      "codigo": 8,
+      "region": "CUSCO"
+    },
+    {
+      "codigo": 9,
+      "region": "HUANCAVELICA"
+    },
+    {
+      "codigo": 10,
+      "region": "HUANUCO"
+    },
+    {
+      "codigo": 11,
+      "region": "ICA"
+    },
+    {
+      "codigo": 12,
+      "region": "JUNIN"
+    },
+    {
+      "codigo": 13,
+      "region": "LA LIBERTAD"
+    },
+    {
+      "codigo": 14,
+      "region": "LAMBAYEQUE"
+    },
+    {
+      "codigo": 15,
+      "region": "LIMA + RESIDENTES EN EL EXTRANJERO"
+    },
+    {
+      "codigo": 16,
+      "region": "LIMA PROVINCIAS"
+    },
+    {
+      "codigo": 17,
+      "region": "LORETO"
+    },
+    {
+      "codigo": 18,
+      "region": "MADRE DE DIOS"
+    },
+    {
+      "codigo": 19,
+      "region": "MOQUEGUA"
+    },
+    {
+      "codigo": 20,
+      "region": "PASCO"
+    },
+    {
+      "codigo": 21,
+      "region": "PIURA"
+    },
+    {
+      "codigo": 22,
+      "region": "PUNO"
+    },
+    {
+      "codigo": 23,
+      "region": "SAN MARTIN"
+    },
+    {
+      "codigo": 24,
+      "region": "TACNA"
+    },
+    {
+      "codigo": 25,
+      "region": "TUMBES"
+    },
+    {
+      "codigo": 26,
+      "region": "UCAYALI"
+    }
+  ]
