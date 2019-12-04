@@ -1,4 +1,5 @@
-# my-app
+# Version PWA del sitio web: [DECIDEBIEN.PE](http://decidebien.pe)
+Aplicacion R original en: [decidebien_desarrollo](https://github.com/jincio/decidebien_desarrollo)
 
 ## Project setup
 ```

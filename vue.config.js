@@ -10,9 +10,10 @@ module.exports = {
     msTileColor: manifestJSON.background_color,
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
-    workboxPluginMode: 'InjectManifest',
+    // configure the workbox plugin
+    workboxPluginMode: 'GenerateSW',
     workboxOptions: {
-      swSrc: 'service-worker.js',
-    },
+      cleanupOutdatedCaches: true
+    }
   },
 }
