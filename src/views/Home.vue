@@ -1,60 +1,70 @@
 <template>
   <v-container>
-    <v-container fluid>
-      <v-col cols="12">
-        <v-row justify="center">
-          <v-col cols="6" md="4">
-            <v-select
-              :items="regiones"
-              item-text="region"
-              item-value="codigo"
-              label="Región:"
-              v-model="defaultSelected"
-              prepend-icon="mdi-map"
-            ></v-select>
-          </v-col>
-          <v-col cols="6" md="4"
-            ><v-btn @click="onNoFiltrosClicked">No Filtros</v-btn>
-          </v-col>
-        </v-row>
-      </v-col>
+    <v-row>
+      <v-col>
+        <v-card class="pa-2">
+          <v-select
+            :items="regiones"
+            item-text="region"
+            item-value="codigo"
+            label="Región:"
+            v-model="defaultSelected"
+            prepend-icon="mdi-map"
+          ></v-select>
+          <v-container>
+            <v-btn @click="onNoFiltrosClicked">No Filtros</v-btn>
+          </v-container>
 
-      <v-col cols="12">
-        <v-row justify="center">
           <v-expansion-panels>
             <v-expansion-panel>
-              <v-expansion-panel-header
-                >Que no incluya listas con ex-congresistas electos (2016-2019)
+              <v-expansion-panel-header>
+                Que no incluya listas con ex-congresistas electos (2016-2019)
                 por:
               </v-expansion-panel-header>
               <v-expansion-panel-content>
-                <v-checkbox
-                  v-model="checkbox1"
-                  :label="`Fujimorismo:`"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="checkbox2"
-                  :label="`Apra/PPC:`"
-                ></v-checkbox>
+                <v-checkbox v-model="checkbox1" :label="`Fujimorismo:`"></v-checkbox>
+                <v-checkbox v-model="checkbox2" :label="`Apra/PPC:`"></v-checkbox>
                 <v-checkbox v-model="checkbox3" :label="`PPK:`"></v-checkbox>
-                <v-checkbox
-                  v-model="checkbox4"
-                  :label="`Frente Amplio:`"
-                ></v-checkbox>
+                <v-checkbox v-model="checkbox4" :label="`Frente Amplio:`"></v-checkbox>
               </v-expansion-panel-content>
             </v-expansion-panel>
           </v-expansion-panels>
-        </v-row>
+        </v-card>
       </v-col>
 
-      <v-col cols="12">
-        <v-row justify="center">
-          <v-divider />
-        </v-row>
-      </v-col>
+      <v-col>
+        <v-card class="pa-2">
+          <v-tabs background-color="indigo" dark v-model="tabs">
+            <v-tab>Filtered</v-tab>
+            <v-tab>Full list</v-tab>
+          </v-tabs>
 
-      <v-data-table :headers="headers" :items="filteredItems"></v-data-table>
-    </v-container>
+          <v-tabs-items v-model="tabs">
+            <v-tab-item>
+              <v-card flat>
+                <v-card-title>
+                  
+                  <v-spacer></v-spacer>
+                  <v-text-field
+                    v-model="search"
+                    label="Buscar"
+                    single-line
+                    hide-details
+                  ></v-text-field>
+                </v-card-title>
+                <v-data-table :headers="headers" :items="filteredItems" :search="search"></v-data-table>
+              </v-card>
+            </v-tab-item>
+
+            <v-tab-item>
+              <v-card flat>
+                <v-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-card-text>
+              </v-card>
+            </v-tab-item>
+          </v-tabs-items>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -77,7 +87,14 @@ let myMixin = {
       if (lista.ex_fa >= 1 && this.checkbox4) {
         return false;
       }
-      return lista.Cod === this.defaultSelected;
+      // on first load the value will be an Observable,
+      // afterwards it will be just an Array.
+      // TODO: This could be just one condition if we store
+      // the final Array and bind to that instead.
+      return (
+        lista.Cod === this.defaultSelected ||
+        lista.Cod === this.defaultSelected.codigo
+      );
     }
   }
 };
@@ -88,6 +105,8 @@ export default {
   mixins: [myMixin],
   data() {
     return {
+      tabs: null,
+      search: '',
       checkbox1: false,
       checkbox2: false,
       checkbox3: false,
@@ -103,6 +122,9 @@ export default {
     regiones() {
       return this.$store.state.regiones;
     },
+    primeraRegion() {
+      return this.$store.state.regiones[0];
+    },
     filteredItems() {
       return this.$store.state.listas.filter(this.customFilter);
     }
@@ -113,8 +135,11 @@ export default {
       this.checkbox2 = false;
       this.checkbox3 = false;
       this.checkbox4 = false;
-      this.defaultSelected = null;
     }
+  },
+  created() {
+    // to pre-select Amazonas on load
+    this.defaultSelected = this.primeraRegion;
   }
 };
 </script>
