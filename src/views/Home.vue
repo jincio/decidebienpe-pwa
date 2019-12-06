@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-card class="mb-2 mx-auto" width="150%" shaped raised>
+        <v-card class="mb-2 mx-auto"  shaped raised>
           <v-list-item three-line>
             <v-list-item-content>
               En estas elecciones, ¿te cuesta decidir por qué lista votar? Esta
@@ -443,7 +443,11 @@ export default {
         { text: "Partido", value: "Partido" },
         { text: "Candidato", value: "Candidato" },
         { text: "Número", value: "Número" },
-        { text: "Edad", value: "Edad" }
+        { text: "Sexo", value: "Sexo" },
+        { text: "Edad", value: "Edad" },
+        { text: "Con Sentencia", value: "ConSentencia" },
+        { text: "Experiencia Politica", value: "Experiencia_Pol" },
+        { text: "Estudios", value: "Estudios" }
       ],
       headers3: [{ text: "Partido", value: "Partido" }],
       defaultSelected: null
