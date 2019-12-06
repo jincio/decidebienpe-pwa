@@ -33,10 +33,10 @@
         <v-card-text class="px-4">
           <form
             name="contact"
-            action="/thank-you"
             netlify-honeypot="bot-field"
             method="post"
             netlify
+            data-netlify="true"
           >
             <input type="hidden" name="form-name" value="contact" />
             <p class="hidden-pot">
