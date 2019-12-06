@@ -1,43 +1,45 @@
 <template>
   <v-container>
-    <v-card class="mb-2" raised>
-      <v-list-item three-line>
-        <v-list-item-content>
-          En estas elecciones, ¿te cuesta decidir por qué lista votar? Esta
-          aplicación te puede ayudar. Te mostramos la/s listas que cumplen con
-          criterios que son importantes para ti. ¡Únete a los miles de peruanos
-          que se informarán antes de dar su voto este enero!
-        </v-list-item-content>
-      </v-list-item>
-    </v-card>
-    <v-card class="mx-auto" shaped raised>
-      <v-list-item three-line>
-        <v-list-item-content>
-          <v-list-item-title class="headline mb-1"
-            >Instrucciones:</v-list-item-title
-          >
-          <v-list-item-subtitle
-            >Cuando abres la página todos los filtros están
-            inactivos</v-list-item-subtitle
-          >
-          <v-list-item-subtitle>Elige tu departamento</v-list-item-subtitle>
-          <v-list-item-subtitle
-            >Activa los filtros que son importantes para
-            ti</v-list-item-subtitle
-          >
-          <v-list-item-subtitle
-            >Revisa las listas que pasaron tus filtros</v-list-item-subtitle
-          >
-          <v-list-item-subtitle
-            >Revisa los candidatos de las listas que pasaron tus
-            filtros</v-list-item-subtitle
-          >
-        </v-list-item-content>
-      </v-list-item>
-    </v-card>
+    <v-row>
+      <v-col>
+        <v-card class="mb-2 mx-auto" width="150%" shaped raised>
+          <v-list-item three-line>
+            <v-list-item-content>
+              En estas elecciones, ¿te cuesta decidir por qué lista votar? Esta
+              aplicación te puede ayudar. Te mostramos la/s listas que cumplen
+              con criterios que son importantes para ti. ¡Únete a los miles de
+              peruanos que se informarán antes de dar su voto este enero!
+            </v-list-item-content>
+          </v-list-item>
+        </v-card>
+      </v-col>
+      
+      <v-col> 
+      <v-card class="mx-auto" shaped raised>
+        <v-list-item three-line>
+          <v-list-item-content>
+            <v-list-item-title class="headline mb-1">
+              Instrucciones:
+            </v-list-item-title>
+            <ul>
+              <li>Cuando abres la página todos los filtros están inactivos</li>
+              <li>Elige tu departamento</li>
+              <li>Activa los filtros que son importantes para ti</li>
+              <li>Revisa las listas que pasaron tus filtros</li>
+              <li>
+                Revisa los candidatos de las listas que pasaron tus filtros
+              </li>
+            </ul>
+          </v-list-item-content>
+        </v-list-item>
+      </v-card>
+      </v-col>
+    </v-row>
+
     <v-row>
       <v-col>
         <v-card class="pa-2" min-height="100%" raised>
+          
           <v-select
             :items="regiones"
             item-text="region"
@@ -45,6 +47,7 @@
             label="Elije tu departamento:"
             v-model="defaultSelected"
             prepend-icon="mdi-map"
+            color="secondary"
           ></v-select>
           <v-layout
             text-xs-center
@@ -438,7 +441,9 @@ export default {
       headers1: [{ text: "Partido", value: "Partido" }],
       headers2: [
         { text: "Partido", value: "Partido" },
-        { text: "Candidato", value: "Candidato" }
+        { text: "Candidato", value: "Candidato" },
+        { text: "Número", value: "Número" },
+        { text: "Edad", value: "Edad" }
       ],
       headers3: [{ text: "Partido", value: "Partido" }],
       defaultSelected: null
