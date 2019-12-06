@@ -2,14 +2,17 @@
   <div class="about">
     <p>
       Este app está en línea gracias al auspicio de
-      <a href="https://www.transparencia.org.pe/"
-        >ASOCIACIÓN CIVIL TRANSPARENCIA</a
-      >
+      <a
+        href="https://www.transparencia.org.pe/"
+      >ASOCIACIÓN CIVIL TRANSPARENCIA</a>
       y a la generosa donación de amig@s. Para ver la lista responsables,
       aportantes, colaboradores y más información sobre los filtros, revisa
       aquí. Esta plataforma fue iniciada por José Incio y ahora cuenta con
       much@s colaboradores Cualquier error con la data escribe a:
-      <a href="mailto:" target="_top">jincio@gmail.com</a>
+      <a
+        href="mailto:"
+        target="_top"
+      >jincio@gmail.com</a>
     </p>
     <h4>Donantes:</h4>
     <ul>
@@ -19,6 +22,82 @@
       <li>Ricardo Moran (@RicardoMoran)</li>
       <li>Michele Gabriela Fernandez (@@La_micha)</li>
     </ul>
-    
+    <v-flex xs12 md6 pt-4>
+      <v-card height="100%">
+        <v-card-title primary-title>
+          <div>
+            <h1 class="headline">Escribenos</h1>
+          </div>
+        </v-card-title>
+
+        <v-card-text class="px-4">
+          <form
+            name="contact"
+            action="/thank-you"
+            netlify-honeypot="bot-field"
+            method="post"
+            netlify
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="hidden-pot">
+              <label>
+                Don’t fill this out:
+                <input name="bot-field" />
+              </label>
+            </p>
+            <label class="form-label" for="name">Nombre</label>
+            <input class="form-field" name="name" id="name" />
+            <label class="form-label" for="email">Correo Electrónico</label>
+            <input class="form-field" name="email" id="email" />
+            <label class="form-label" for="message">Mensaje</label>
+            <textarea class="form-field" name="message" id="message"></textarea>
+            <input class="form-button" type="submit" value="Send message" />
+          </form>
+        </v-card-text>
+      </v-card>
+    </v-flex>
   </div>
 </template>
+
+<style scoped>
+.hidden-pot {
+  display: none;
+}
+
+input.form-field,
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type='email'],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type='submit'] {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+</style>
