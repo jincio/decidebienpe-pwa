@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col>
-        <v-card class="mb-2 mx-auto"  shaped raised>
+    <v-layout row>
+      <v-flex md6>
+        <v-card class="mb-2 mx-2"  shaped raised>
           <v-list-item three-line>
             <v-list-item-content>
               En estas elecciones, ¿te cuesta decidir por qué lista votar? Esta
@@ -12,10 +12,10 @@
             </v-list-item-content>
           </v-list-item>
         </v-card>
-      </v-col>
+      </v-flex>
       
-      <v-col> 
-      <v-card class="mx-auto" shaped raised>
+      <v-flex md6> 
+      <v-card class="mb-2 mx-2" shaped raised>
         <v-list-item three-line>
           <v-list-item-content>
             <v-list-item-title class="headline mb-1">
@@ -33,12 +33,12 @@
           </v-list-item-content>
         </v-list-item>
       </v-card>
-      </v-col>
-    </v-row>
+      </v-flex>
+    </v-layout>
 
-    <v-row>
-      <v-col>
-        <v-card class="pa-2" min-height="100%" raised>
+    <v-layout row>
+      <v-flex md6 class="mb-2">
+        <v-card class="pa-2 mx-2" raised shaped="">
           
           <v-select
             :items="regiones"
@@ -237,10 +237,10 @@
             </v-expansion-panel>
           </v-expansion-panels>
         </v-card>
-      </v-col>
+      </v-flex>
 
-      <v-col>
-        <v-card class="pa-2" raised>
+      <v-flex md6>
+        <v-card class="pa-2 mx-2" raised shaped>
           <p>{{ showRegion }}, número de escaños ({{ showCurules }}).</p>
           <p>
             Listas que pasan tus filtros:
@@ -321,8 +321,8 @@
             </v-tab-item>
           </v-tabs-items>
         </v-card>
-      </v-col>
-    </v-row>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
