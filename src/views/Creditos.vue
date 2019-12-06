@@ -26,7 +26,7 @@
       <v-card height="100%">
         <v-card-title primary-title>
           <div>
-            <h1 class="headline">Escribenos</h1>
+            <h1 class="headline">Escríbenos</h1>
           </div>
         </v-card-title>
 
