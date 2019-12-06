@@ -26,7 +26,7 @@
             <v-icon>mdi-contact-mail</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            Creditos
+            Créditos
           </v-list-item-content>
         </v-list-item>
       </v-list>
