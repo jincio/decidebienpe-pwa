@@ -10,7 +10,15 @@
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <router-link to="/">Home</router-link>
+            <router-link to="/">Filtros</router-link>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link>
+          <v-list-item-action>
+            <v-icon>mdi-file-document-box</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <router-link to="/resumen">Resumen General</router-link>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
@@ -18,7 +26,7 @@
             <v-icon>mdi-contact-mail</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <router-link to="/about">About</router-link>
+            <router-link to="/creditos">Creditos</router-link>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -30,7 +38,7 @@
       dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Decide Bien.PE</v-toolbar-title>
+      <v-toolbar-title>¡Decide bien! Elecciones congresales Perú 2020</v-toolbar-title>
     </v-app-bar>
 
     <v-content>
