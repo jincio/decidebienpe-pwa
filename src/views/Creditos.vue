@@ -31,7 +31,14 @@
         </v-card-title>
 
         <v-card-text class="px-4">
-          <form name="preguntas" netlify-honeypot="bot-field" method="post" netlify>
+          <form @submit.prevent="handleSubmit"
+            name="preguntas"
+            netlify-honeypot="bot-field"
+            action="/success/"
+            data-netlify="true"
+            method="post"
+            netlify
+          >
             <input type="hidden" name="form-name" value="contact" />
             <p class="hidden-pot">
               <label>
@@ -40,7 +47,7 @@
               </label>
             </p>
             <label class="form-label" for="name">Nombre</label>
-            <input class="form-field" name="name" id="name"  v-model="formData.name" />
+            <input class="form-field" name="name" id="name" v-model="formData.name" />
             <label class="form-label" for="email">Correo Electrónico</label>
             <input class="form-field" name="email" id="email" v-model="formData.email" />
             <label class="form-label" for="message">Mensaje</label>
@@ -120,7 +127,7 @@ export default {
           ...this.formData
         })
       })
-        .then(() => this.$router.push("/success"))
+        .then(() => this.$router.push("/"))
         .catch(error => alert(error));
     }
   }
