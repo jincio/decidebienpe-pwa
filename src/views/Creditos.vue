@@ -31,13 +31,7 @@
         </v-card-title>
 
         <v-card-text class="px-4">
-          <form
-            name="contact"
-            netlify-honeypot="bot-field"
-            method="post"
-            netlify
-            data-netlify="true"
-          >
+          <form name="preguntas" netlify-honeypot="bot-field" method="post" netlify>
             <input type="hidden" name="form-name" value="contact" />
             <p class="hidden-pot">
               <label>
@@ -46,11 +40,11 @@
               </label>
             </p>
             <label class="form-label" for="name">Nombre</label>
-            <input class="form-field" name="name" id="name" />
+            <input class="form-field" name="name" id="name"  v-model="formData.name" />
             <label class="form-label" for="email">Correo Electrónico</label>
-            <input class="form-field" name="email" id="email" />
+            <input class="form-field" name="email" id="email" v-model="formData.email" />
             <label class="form-label" for="message">Mensaje</label>
-            <textarea class="form-field" name="message" id="message"></textarea>
+            <textarea class="form-field" name="message" id="message" v-model="formData.message"></textarea>
             <input class="form-button" type="submit" value="Send message" />
           </form>
         </v-card-text>
@@ -77,7 +71,7 @@ textarea {
   resize: vertical;
 }
 
-input[type='email'],
+input[type="email"],
 select,
 textarea {
   width: 100%;
@@ -90,7 +84,7 @@ textarea {
   resize: vertical;
 }
 
-input[type='submit'] {
+input[type="submit"] {
   width: 100%;
   background-color: #4caf50;
   color: white;
@@ -101,3 +95,34 @@ input[type='submit'] {
   cursor: pointer;
 }
 </style>
+
+<script>
+export default {
+  data() {
+    return {
+      formData: {}
+    };
+  },
+  methods: {
+    encode(data) {
+      return Object.keys(data)
+        .map(
+          key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+        )
+        .join("&");
+    },
+    handleSubmit(e) {
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: this.encode({
+          preguntas: e.target.getAttribute("name"),
+          ...this.formData
+        })
+      })
+        .then(() => this.$router.push("/success"))
+        .catch(error => alert(error));
+    }
+  }
+};
+</script>
