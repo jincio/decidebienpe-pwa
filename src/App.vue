@@ -5,28 +5,28 @@
       app
     >
       <v-list dense>
-        <v-list-item link>
+        <v-list-item link :to="{path:'/'}">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <router-link to="/">Filtros</router-link>
+            Filtros
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link>
+        <v-list-item link :to="{path:'/resumen'}">
           <v-list-item-action>
             <v-icon>mdi-file-document-box</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <router-link to="/resumen">Resumen General</router-link>
+            Resumen General
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link>
+        <v-list-item link :to="{path:'/creditos'}">
           <v-list-item-action>
             <v-icon>mdi-contact-mail</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <router-link to="/creditos">Creditos</router-link>
+            Creditos
           </v-list-item-content>
         </v-list-item>
       </v-list>
