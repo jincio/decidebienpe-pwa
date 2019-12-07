@@ -1,25 +1,5 @@
 # Version PWA del sitio web: [DECIDEBIEN.PE](http://decidebien.pe)
 Aplicacion R original en: [decidebien_desarrollo](https://github.com/jincio/decidebien_desarrollo)
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Más información:
+Visita el [wiki](https://github.com/zettai/decidebienpe-pwa/wiki).
