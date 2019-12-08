@@ -1,27 +1,22 @@
 <template>
-  <v-card class="pa-2 mx-2" raised shaped>
-    <p>{{ showRegion }}, número de escaños ({{ showCurules }}).</p>
-    <p>
-      Listas que pasan tus filtros:
-      <span @click.stop="dialog = true"
-        ><v-icon left>mdi-information</v-icon></span
-      >
-    </p>
-
-    <v-row justify="center">
+  <v-card class="pa-2 mx-2">
+    <h3 class="mt-5 text-center">En el Departamento de
+      <v-chip color="red" 
+      text-color="white"> {{ showRegion }} </v-chip>
+      se elegiran <v-chip color="red" 
+      text-color="white"> {{ showCurules }}</v-chip> congresistas.</h3>
+      <p class="text-center mt-5">Revisa las siguientes listas filtradas<span @click.stop="dialog = true"
+      ><v-icon left>mdi-information</v-icon></span>:</p>
+    
+    <v-row class="mt-5" justify="center">
       <v-dialog v-model="dialog" max-width="290">
         <v-card>
           <v-card-text class="pt-4">
-            La primera tabla muestra las listas que pasan tus filtros, la
-            segunda los candidatos de esas listas que pasan tus filtros.
-            De los candidatos mostramos la edad, experiencia política
-            previa (Experiencia_Pol), si tienen sentencia declarada en la
-            hoja de vida o no, y el último grado de estudios alcanzado
+            Las listas a continuación muestran las organizaciones políticas y los candidatos por Región y de acuerdo a los filtros ingresados. Actualmente estamos mostrando la edad, último grado de estudios alcanzado, experiencia política en cargos públicos y sí tiene sentencias declaradas en la hoja de vida entregada al Jurado Nacional de Elecciones para su candidatura.
           </v-card-text>
 
           <v-card-actions>
             <v-spacer></v-spacer>
-
             <v-btn color="secondary" text @click="dialog = false">
               Cerrar
             </v-btn>
@@ -29,15 +24,11 @@
         </v-card>
       </v-dialog>
     </v-row>
-    <v-tabs
-      background-color="indigo"
-      dark
-      v-model="tabs"
-      grow
-      show-arrows
-    >
-      <v-tab class="caption">Listas que cumplen tus filtros:</v-tab>
-      <v-tab class="caption">Candidatos (listas filtradas):</v-tab>
+
+    <v-tabs centered v-model="tabs">
+      <v-tabs-slider></v-tabs-slider>
+      <v-tab class="">Por Organización Política:</v-tab>
+      <v-tab class="">Candidatos por {{ showRegion }}:</v-tab>
     </v-tabs>
 
     <v-tabs-items v-model="tabs">
@@ -112,21 +103,19 @@
     data() {
       return {
         dialog: false,
-        tabs: {
-          default: null
-        },
-      headers1: [{ text: "Partido", value: "Partido" }],
-      headers2: [
-        { text: "Partido", value: "Partido" },
-        { text: "Candidato", value: "Candidato" },
-        { text: "Número", value: "Número" },
-        { text: "Sexo", value: "Sexo" },
-        { text: "Edad", value: "Edad" },
-        { text: "Con Sentencia", value: "ConSentencia" },
-        { text: "Experiencia Politica", value: "Experiencia_Pol" },
-        { text: "Estudios", value: "Estudios" }
-      ],
-      headers3: [{ text: "Partido", value: "Partido" }],
+        tabs: 0,
+        headers1: [{ text: "Partido", value: "Partido" }],
+        headers2: [
+          { text: "Partido", value: "Partido" },
+          { text: "Candidato", value: "Candidato" },
+          { text: "Número", value: "Número" },
+          { text: "Sexo", value: "Sexo" },
+          { text: "Edad", value: "Edad" },
+          { text: "Con Sentencia", value: "ConSentencia" },
+          { text: "Experiencia Politica", value: "Experiencia_Pol" },
+          { text: "Estudios", value: "Estudios" }
+        ],
+        headers3: [{ text: "Partido", value: "Partido" }],
       }
     },
     methods: {

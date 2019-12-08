@@ -10,7 +10,6 @@
             item-value="codigo"
             label="Elije tu departamento:"
             v-model="currentRegion"
-            prepend-icon="mdi-map"
             color="secondary"
             :return-object="true"
           ></v-select>
