@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from '../views/Home.vue'
@@ -40,6 +41,15 @@ const routes = [
 
 const router = new VueRouter({
   routes
+});
+
+// Test - Google Analytics
+ga('set', 'page', router.currentRoute.path);
+ga('send', 'pageview');
+
+router.afterEach(( to ) => {
+  ga('set', 'page', to.path);
+  ga('send', 'pageview');
 });
 
 export default router;
