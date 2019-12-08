@@ -2,16 +2,17 @@
   <div>
     <v-layout row>
       <v-flex md4 class="mb-2">
-        <v-card class="pa-2 mx-2">
-          
+        <v-card class="pa-2 mx-2" shaped>
           <v-select
             :items="regiones"
             item-text="region"
             item-value="codigo"
             label="Elije tu departamento:"
             v-model="currentRegion"
+            prepend-icon="mdi-map"
             color="secondary"
             :return-object="true"
+            v-on:change="updateURLParams"
           ></v-select>
           <v-layout
             text-xs-center
@@ -36,7 +37,10 @@
             v-if="checkbox1"
             class="ma-2"
             close
-            @click:close="checkbox1 = false"
+            @click:close="
+              checkbox1 = false;
+              updateURLQuery();
+            "
           >
             <v-icon left>mdi-alert</v-icon>Fujimorismo
           </v-chip>
@@ -44,7 +48,10 @@
             v-if="checkbox2"
             class="ma-2"
             close
-            @click:close="checkbox2 = false"
+            @click:close="
+              checkbox2 = false;
+              updateURLQuery();
+            "
           >
             <v-icon left>mdi-alert</v-icon>Apra/PPC
           </v-chip>
@@ -52,7 +59,10 @@
             v-if="checkbox3"
             class="ma-2"
             close
-            @click:close="checkbox3 = false"
+            @click:close="
+              checkbox3 = false;
+              updateURLQuery();
+            "
           >
             <v-icon left>mdi-alert</v-icon>PPK
           </v-chip>
@@ -60,7 +70,10 @@
             v-if="checkbox4"
             class="ma-2"
             close
-            @click:close="checkbox4 = false"
+            @click:close="
+              checkbox4 = false;
+              updateURLQuery();
+            "
           >
             <v-icon left>mdi-alert</v-icon>Frente Amplio
           </v-chip>
@@ -68,7 +81,10 @@
             v-if="checkbox5"
             class="ma-2"
             close
-            @click:close="checkbox5 = false"
+            @click:close="
+              checkbox5 = false;
+              updateURLQuery();
+            "
           >
             <v-icon left>mdi-alert</v-icon>S. Penales
           </v-chip>
@@ -76,7 +92,10 @@
             v-if="checkbox6"
             class="ma-2"
             close
-            @click:close="checkbox6 = false"
+            @click:close="
+              checkbox6 = false;
+              updateURLQuery();
+            "
           >
             <v-icon left>mdi-alert</v-icon>S. Alimentarias
           </v-chip>
@@ -84,7 +103,10 @@
             v-if="checkbox7"
             class="ma-2"
             close
-            @click:close="checkbox7 = false"
+            @click:close="
+              checkbox7 = false;
+              updateURLQuery();
+            "
           >
             E.de G. > 30%
           </v-chip>
@@ -92,7 +114,10 @@
             v-if="checkbox8"
             class="ma-2"
             close
-            @click:close="checkbox8 = false"
+            @click:close="
+              checkbox8 = false;
+              updateURLQuery();
+            "
           >
             Paridad
           </v-chip>
@@ -100,7 +125,10 @@
             v-if="checkbox9"
             class="ma-2"
             close
-            @click:close="checkbox9 = false"
+            @click:close="
+              checkbox9 = false;
+              updateURLQuery();
+            "
           >
             Mujer Cabeza de Lista
           </v-chip>
@@ -108,6 +136,7 @@
           <h3 class="subheading font-weight-regular mb-2 mt2">
             ¿Qué buscas en una lista?
           </h3>
+          <!-- TODO -->
           <v-expansion-panels>
             <v-expansion-panel>
               <v-expansion-panel-header>
@@ -118,6 +147,7 @@
                   <v-col>
                     <v-checkbox
                       v-model="checkbox5"
+                      @change="updateURLQuery()"
                       color="info"
                       :label="
                         `Deseo descartar listas que tengan candidat@s con sentencias penales (Declaradas en Hoja de Vida)`
@@ -125,6 +155,7 @@
                     ></v-checkbox>
                     <v-checkbox
                       v-model="checkbox6"
+                      @change="updateURLQuery()"
                       color="info"
                       :label="
                         `Deseo descartar listas que tengan candidat@s con sentencias alimentarias (Declaradas en Hoja de Vida)`
@@ -145,11 +176,13 @@
                   <v-col>
                     <v-checkbox
                       v-model="checkbox1"
+                      @change="updateURLQuery()"
                       color="info"
                       :label="`Fujimorismo`"
                     ></v-checkbox>
                     <v-checkbox
                       v-model="checkbox2"
+                      @change="updateURLQuery()"
                       color="info"
                       :label="`Apra/PPC`"
                     ></v-checkbox>
@@ -158,11 +191,13 @@
                   <v-col>
                     <v-checkbox
                       v-model="checkbox3"
+                      @change="updateURLQuery()"
                       color="info"
                       :label="`PPK`"
                     ></v-checkbox>
                     <v-checkbox
                       v-model="checkbox4"
+                      @change="updateURLQuery()"
                       color="info"
                       :label="`Frente Amplio`"
                     ></v-checkbox>
@@ -180,6 +215,7 @@
                   <v-col>
                     <v-checkbox
                       v-model="checkbox7"
+                      @change="updateURLQuery()"
                       color="info"
                       :label="
                         `Deseo listas con más de lo requerido en la cuota (> 30%)`
@@ -187,11 +223,13 @@
                     ></v-checkbox>
                     <v-checkbox
                       v-model="checkbox8"
+                      @change="updateURLQuery()"
                       color="info"
                       :label="`Deseo listas con paridad (50%)`"
                     ></v-checkbox>
                     <v-checkbox
                       v-model="checkbox9"
+                      @change="updateURLQuery()"
                       color="info"
                       :label="`Deseo listas con una mujer como cabeza de lista`"
                     ></v-checkbox>
@@ -202,20 +240,25 @@
           </v-expansion-panels>
         </v-card>
       </v-flex>
-
+      <!-- TODO -->
       <v-flex md8>
-        <resultados :current-region="currentRegion" :data-table1="filtroTabla1" :data-table2="filtroTabla2"></resultados>
+        <resultados
+          :current-region="currentRegion"
+          :data-table1="filtroTabla1"
+          :data-table2="filtroTabla2"
+        ></resultados>
       </v-flex>
     </v-layout>
   </div>
 </template>
 
 <script>
+import Resultados from "../components/Resultados.vue";
 
-  import Resultados from '../components/Resultados.vue'
-
-  let myMixin = {
+let myMixin = {
   // Mixin Methods and Created
+  // TODO: Ahora que estamos reusando componentes este Mixin podria moverse a un lugar mas 'global'
+  // o quizas moverlo a un componente 'checkboxComponent'
   created: function() {},
   methods: {
     partidoFilter: function(lista) {
@@ -282,11 +325,6 @@
       }
     },
     regionFilter: function(lista) {
-      // on first load the value will be an Observable,
-      // afterwards it will be just an Array.
-      // TODO: This could be just one condition if we store
-      // the final Array and bind to that instead.
-      
       return lista.Region === this.currentRegion.region;
     },
     uniqueFilter: function(myArr, prop) {
@@ -303,6 +341,8 @@ export default {
     Resultados
   },
   mixins: [myMixin],
+  // TODO: cambiar el nombre de checkbox a algo mas chico para que el url sea mas corto
+  // envolverlos en un objecto, por ex: checkboxes: {}
   data() {
     return {
       dialog: false,
@@ -347,12 +387,6 @@ export default {
         .filter(this.genero2Filter)
         .filter(this.genero3Filter);
     }
-    // filtroTabla3() {
-    //   return this.uniqueFilter(
-    //     this.$store.state.listas.filter(this.regionFilter),
-    //     "Partido"
-    //   );
-    // }
   },
   methods: {
     onNoFiltrosClicked() {
@@ -365,15 +399,112 @@ export default {
       this.checkbox7 = false;
       this.checkbox8 = false;
       this.checkbox9 = false;
+      this.updateURLQuery();
     },
     noFiltrosUsed() {
       return (
-        this.checkbox1 || this.checkbox2 || this.checkbox3 || this.checkbox4
+        this.checkbox1 ||
+        this.checkbox2 ||
+        this.checkbox3 ||
+        this.checkbox4 ||
+        this.checkbox5 ||
+        this.checkbox6 ||
+        this.checkbox7 ||
+        this.checkbox8 ||
+        this.checkbox9
       );
+    },
+    // Este metodo actualiza el url cuando los checkboxes cambian
+    updateURLQuery() {
+      if (
+        this.checkbox1 === true ||
+        this.checkbox1 === false ||
+        this.checkbox2 === true ||
+        this.checkbox2 === false ||
+        this.checkbox3 === true ||
+        this.checkbox3 === false ||
+        this.checkbox4 === true ||
+        this.checkbox4 === false ||
+        this.checkbox5 === true ||
+        this.checkbox5 === false ||
+        this.checkbox6 === true ||
+        this.checkbox6 === false ||
+        this.checkbox7 === true ||
+        this.checkbox7 === false ||
+        this.checkbox8 === true ||
+        this.checkbox8 === false ||
+        this.checkbox9 === true ||
+        this.checkbox9 === false
+      ) {
+        this.$router.push({
+          name: "filtros",
+          params: {
+            departamento: this.currentRegion.region
+          },
+          query: {
+            checkbox1: this.checkbox1,
+            checkbox2: this.checkbox2,
+            checkbox3: this.checkbox3,
+            checkbox4: this.checkbox4,
+            checkbox5: this.checkbox5,
+            checkbox6: this.checkbox6,
+            checkbox7: this.checkbox7,
+            checkbox8: this.checkbox8,
+            checkbox9: this.checkbox9
+          }
+        });
+      }
+    },
+    // Este metodo actualiza el url cuando el departamento selecionado cambia
+    updateURLParams() {
+      if (this.currentRegion.region) {
+        this.$router.push({
+          name: "filtros",
+          params: { departamento: this.currentRegion.region },
+          query: {
+            checkbox1: this.checkbox1,
+            checkbox2: this.checkbox2,
+            checkbox3: this.checkbox3,
+            checkbox4: this.checkbox4,
+            checkbox5: this.checkbox5,
+            checkbox6: this.checkbox6,
+            checkbox7: this.checkbox7,
+            checkbox8: this.checkbox8,
+            checkbox9: this.checkbox9
+          }
+        });
+      }
+    },
+    // Este metodo recibe un route (url) y parsea sus params y query
+    // Usamos esto para poder compartir 'resultados' usando el url
+    restoreTablesValues() {
+      const urlDepto = this.$route.params.departamento;
+      const queryParams = this.$route.query;
+
+      if (urlDepto) {
+        const newDefault = this.regiones.filter(
+          region => region.region == urlDepto
+        );
+        if (newDefault[0].region) {
+          this.currentRegion = this.regiones[0];
+          this.checkbox1 = queryParams.checkbox1 == "true";
+          this.checkbox2 = queryParams.checkbox2 == "true";
+          this.checkbox3 = queryParams.checkbox3 == "true";
+          this.checkbox4 = queryParams.checkbox4 == "true";
+          this.checkbox5 = queryParams.checkbox5 == "true";
+          this.checkbox6 = queryParams.checkbox6 == "true";
+          this.checkbox7 = queryParams.checkbox7 == "true";
+          this.checkbox8 = queryParams.checkbox8 == "true";
+          this.checkbox9 = queryParams.checkbox9 == "true";
+        }
+      }
     }
   },
-  created() {
-    this.currentRegion = this.regiones[0]
+  mounted() {
+    // TODO: Discutir que tiene mas sentido, elegir un dpto por default o no:
+    // Si seleccionamos una region automaticamente, los analytics reportaran esa region mucho mas que las demas
+    // this.currentRegion = this.regiones[0];
+    this.restoreTablesValues();
   }
 };
 </script>
