@@ -44,12 +44,12 @@ const router = new VueRouter({
 });
 
 // Test - Google Analytics
-ga('set', 'page', router.currentRoute.path);
-ga('send', 'pageview');
+gtag('set', 'page', router.currentRoute.path);
+gtag('send', 'pageview');
 
 router.afterEach(( to ) => {
-  ga('set', 'page', to.path);
-  ga('send', 'pageview');
+  gtag('set', 'page', to.path);
+  gtag('send', 'pageview');
 });
 
 export default router;
