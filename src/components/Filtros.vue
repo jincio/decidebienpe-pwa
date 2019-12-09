@@ -454,6 +454,7 @@ export default {
           }
         });
       }
+      this.sendToGA();
     },
     // Este metodo actualiza el url cuando el departamento selecionado cambia
     updateURLParams() {
@@ -474,6 +475,7 @@ export default {
           }
         });
       }
+      this.sendToGA();
     },
     // Este metodo recibe un route (url) y parsea sus params y query
     // Usamos esto para poder compartir 'resultados' usando el url
@@ -486,7 +488,7 @@ export default {
           region => region.region == urlDepto
         );
         if (newDefault[0].region) {
-          this.currentRegion = this.regiones[0];
+          this.currentRegion = newDefault[0];
           this.checkbox1 = queryParams.checkbox1 == "true";
           this.checkbox2 = queryParams.checkbox2 == "true";
           this.checkbox3 = queryParams.checkbox3 == "true";
@@ -496,14 +498,20 @@ export default {
           this.checkbox7 = queryParams.checkbox7 == "true";
           this.checkbox8 = queryParams.checkbox8 == "true";
           this.checkbox9 = queryParams.checkbox9 == "true";
+          this.sendToGA();
         }
       }
+    },
+    // Mandar la pagina visitada a Google Analytics como un custom event
+    sendToGA() {
+      window.gtag("event", "region_" + this.currentRegion.region, {
+        url: this.$route.fullPath
+      });
     }
   },
   mounted() {
     // TODO: Discutir que tiene mas sentido, elegir un dpto por default o no:
     // Si seleccionamos una region automaticamente, los analytics reportaran esa region mucho mas que las demas
-    // this.currentRegion = this.regiones[0];
     this.restoreTablesValues();
   }
 };

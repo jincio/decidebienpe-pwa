@@ -1,14 +1,14 @@
 /* eslint-disable no-undef */
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from '../views/Home.vue'
+import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
+    path: "/",
+    name: "home",
     component: Home
   },
   {
@@ -41,15 +41,6 @@ const routes = [
 
 const router = new VueRouter({
   routes
-});
-
-// Test - Google Analytics
-gtag('set', 'page', router.currentRoute.path);
-gtag('send', 'pageview');
-
-router.afterEach(( to ) => {
-  gtag('set', 'page', to.path);
-  gtag('send', 'pageview');
 });
 
 export default router;
