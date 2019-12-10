@@ -14,12 +14,7 @@
             :return-object="true"
             v-on:change="updateURLParams"
           ></v-select>
-          <v-layout
-            text-xs-center
-            align-center
-            justify-center
-            v-if="noFiltrosUsed()"
-          >
+          <v-layout text-xs-center align-center justify-center>
             <v-btn
               @click="onNoFiltrosClicked"
               class="ma-2"
@@ -31,6 +26,9 @@
             </v-btn>
           </v-layout>
 
+          <!-- Container para el boton de Twitter -->
+          <div class="fixedHeight"><div ref="container"></div></div>
+          
           <v-divider />
 
           <v-chip
@@ -254,6 +252,8 @@
 
 <script>
 import Resultados from "../components/Resultados.vue";
+import Button from "../components/Button.vue";
+import Vue from "vue";
 
 let myMixin = {
   // Mixin Methods and Created
@@ -389,6 +389,30 @@ export default {
     }
   },
   methods: {
+    reAttachTwitterButton() {
+      if (window.twttr) {
+        var first =
+          this.$refs.container &&
+          this.$refs.container.children &&
+          this.$refs.container.children[0];
+
+        var ComponentClass = Vue.extend(Button);
+        var instance = new ComponentClass({
+          propsData: { type: "primary" }
+        });
+        instance.$mount(); // pass nothing
+
+        if (!first) {
+          this.$refs.container.appendChild(instance.$el);
+        } else {
+          this.$refs.container.replaceChild(instance.$el, first);
+        }
+
+        if (window.twttr.widgets) {
+          window.twttr.widgets.load();
+        }
+      }
+    },
     onNoFiltrosClicked() {
       this.checkbox1 = false;
       this.checkbox2 = false;
@@ -455,6 +479,7 @@ export default {
         });
       }
       this.sendToGA();
+      this.reAttachTwitterButton();
     },
     // Este metodo actualiza el url cuando el departamento selecionado cambia
     updateURLParams() {
@@ -476,6 +501,7 @@ export default {
         });
       }
       this.sendToGA();
+      this.reAttachTwitterButton();
     },
     // Este metodo recibe un route (url) y parsea sus params y query
     // Usamos esto para poder compartir 'resultados' usando el url
@@ -499,6 +525,7 @@ export default {
           this.checkbox8 = queryParams.checkbox8 == "true";
           this.checkbox9 = queryParams.checkbox9 == "true";
           this.sendToGA();
+          this.reAttachTwitterButton();
         }
       }
     },
@@ -516,3 +543,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.fixedHeight {
+  height: 75px;
+}
+</style>

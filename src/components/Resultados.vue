@@ -12,15 +12,6 @@
         ><v-icon left>mdi-information</v-icon></span
       >:
     </p>
-    <a
-      href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-      class="twitter-share-button"
-      data-size="large"
-      data-text="Decide bien - Resultados:"
-      data-hashtags="decidebien"
-      data-show-count="false"
-      ></a
-    >
     <v-row class="mt-5" justify="center">
       <v-dialog v-model="dialog" max-width="290">
         <v-card>
