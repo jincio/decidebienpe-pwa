@@ -32,99 +32,99 @@
           <v-divider />
 
           <v-chip
-            v-if="checkbox1"
+            v-if="f1"
             class="ma-2"
             close
             @click:close="
-              checkbox1 = false;
+              f1 = false;
               updateURLQuery();
             "
           >
             <v-icon left>mdi-alert</v-icon>Fujimorismo
           </v-chip>
           <v-chip
-            v-if="checkbox2"
+            v-if="f2"
             class="ma-2"
             close
             @click:close="
-              checkbox2 = false;
+              f2 = false;
               updateURLQuery();
             "
           >
             <v-icon left>mdi-alert</v-icon>Apra/PPC
           </v-chip>
           <v-chip
-            v-if="checkbox3"
+            v-if="f3"
             class="ma-2"
             close
             @click:close="
-              checkbox3 = false;
+              f3 = false;
               updateURLQuery();
             "
           >
             <v-icon left>mdi-alert</v-icon>PPK
           </v-chip>
           <v-chip
-            v-if="checkbox4"
+            v-if="f4"
             class="ma-2"
             close
             @click:close="
-              checkbox4 = false;
+              f4 = false;
               updateURLQuery();
             "
           >
             <v-icon left>mdi-alert</v-icon>Frente Amplio
           </v-chip>
           <v-chip
-            v-if="checkbox5"
+            v-if="f5"
             class="ma-2"
             close
             @click:close="
-              checkbox5 = false;
+              f5 = false;
               updateURLQuery();
             "
           >
             <v-icon left>mdi-alert</v-icon>S. Penales
           </v-chip>
           <v-chip
-            v-if="checkbox6"
+            v-if="f6"
             class="ma-2"
             close
             @click:close="
-              checkbox6 = false;
+              f6 = false;
               updateURLQuery();
             "
           >
             <v-icon left>mdi-alert</v-icon>S. Alimentarias
           </v-chip>
           <v-chip
-            v-if="checkbox7"
+            v-if="f7"
             class="ma-2"
             close
             @click:close="
-              checkbox7 = false;
+              f7 = false;
               updateURLQuery();
             "
           >
             E.de G. > 30%
           </v-chip>
           <v-chip
-            v-if="checkbox8"
+            v-if="f8"
             class="ma-2"
             close
             @click:close="
-              checkbox8 = false;
+              f8 = false;
               updateURLQuery();
             "
           >
             Paridad
           </v-chip>
           <v-chip
-            v-if="checkbox9"
+            v-if="f9"
             class="ma-2"
             close
             @click:close="
-              checkbox9 = false;
+              f9 = false;
               updateURLQuery();
             "
           >
@@ -144,7 +144,7 @@
                 <v-row>
                   <v-col>
                     <v-checkbox
-                      v-model="checkbox5"
+                      v-model="f5"
                       @change="updateURLQuery()"
                       color="info"
                       :label="
@@ -152,7 +152,7 @@
                       "
                     ></v-checkbox>
                     <v-checkbox
-                      v-model="checkbox6"
+                      v-model="f6"
                       @change="updateURLQuery()"
                       color="info"
                       :label="
@@ -173,13 +173,13 @@
                 <v-row>
                   <v-col>
                     <v-checkbox
-                      v-model="checkbox1"
+                      v-model="f1"
                       @change="updateURLQuery()"
                       color="info"
                       :label="`Fujimorismo`"
                     ></v-checkbox>
                     <v-checkbox
-                      v-model="checkbox2"
+                      v-model="f2"
                       @change="updateURLQuery()"
                       color="info"
                       :label="`Apra/PPC`"
@@ -188,13 +188,13 @@
 
                   <v-col>
                     <v-checkbox
-                      v-model="checkbox3"
+                      v-model="f3"
                       @change="updateURLQuery()"
                       color="info"
                       :label="`PPK`"
                     ></v-checkbox>
                     <v-checkbox
-                      v-model="checkbox4"
+                      v-model="f4"
                       @change="updateURLQuery()"
                       color="info"
                       :label="`Frente Amplio`"
@@ -212,7 +212,7 @@
                 <v-row>
                   <v-col>
                     <v-checkbox
-                      v-model="checkbox7"
+                      v-model="f7"
                       @change="updateURLQuery()"
                       color="info"
                       :label="
@@ -220,13 +220,13 @@
                       "
                     ></v-checkbox>
                     <v-checkbox
-                      v-model="checkbox8"
+                      v-model="f8"
                       @change="updateURLQuery()"
                       color="info"
                       :label="`Deseo listas con paridad (50%)`"
                     ></v-checkbox>
                     <v-checkbox
-                      v-model="checkbox9"
+                      v-model="f9"
                       @change="updateURLQuery()"
                       color="info"
                       :label="`Deseo listas con una mujer como cabeza de lista`"
@@ -266,22 +266,22 @@ let myMixin = {
         case 0:
           return true;
         case 1:
-          if (!this.checkbox1) {
+          if (!this.f1) {
             return true;
           }
           break;
         case 2:
-          if (!this.checkbox2) {
+          if (!this.f2) {
             return true;
           }
           break;
         case 3:
-          if (!this.checkbox3) {
+          if (!this.f3) {
             return true;
           }
           break;
         case 4:
-          if (!this.checkbox4) {
+          if (!this.f4) {
             return true;
           }
           break;
@@ -290,35 +290,35 @@ let myMixin = {
       }
     },
     sentencia1Filter: function(lista) {
-      if (this.checkbox5) {
+      if (this.f5) {
         return lista.Sentencia < 1;
       } else {
         return true;
       }
     },
     sentencia2Filter: function(lista) {
-      if (this.checkbox6) {
+      if (this.f6) {
         return lista.Sentencia2 < 1;
       } else {
         return true;
       }
     },
     genero1Filter: function(lista) {
-      if (this.checkbox7) {
+      if (this.f7) {
         return lista.dif > 0;
       } else {
         return true;
       }
     },
     genero2Filter: function(lista) {
-      if (this.checkbox8) {
+      if (this.f8) {
         return lista.eq1 >= 49;
       } else {
         return true;
       }
     },
     genero3Filter: function(lista) {
-      if (this.checkbox9) {
+      if (this.f9) {
         return lista.pos_f == 1;
       } else {
         return true;
@@ -346,15 +346,15 @@ export default {
   data() {
     return {
       dialog: false,
-      checkbox1: false,
-      checkbox2: false,
-      checkbox3: false,
-      checkbox4: false,
-      checkbox5: false,
-      checkbox6: false,
-      checkbox7: false,
-      checkbox8: false,
-      checkbox9: false,
+      f1: false,
+      f2: false,
+      f3: false,
+      f4: false,
+      f5: false,
+      f6: false,
+      f7: false,
+      f8: false,
+      f9: false,
       currentRegion: {
         default: {}
       }
@@ -414,51 +414,51 @@ export default {
       }
     },
     onNoFiltrosClicked() {
-      this.checkbox1 = false;
-      this.checkbox2 = false;
-      this.checkbox3 = false;
-      this.checkbox4 = false;
-      this.checkbox5 = false;
-      this.checkbox6 = false;
-      this.checkbox7 = false;
-      this.checkbox8 = false;
-      this.checkbox9 = false;
+      this.f1 = false;
+      this.f2 = false;
+      this.f3 = false;
+      this.f4 = false;
+      this.f5 = false;
+      this.f6 = false;
+      this.f7 = false;
+      this.f8 = false;
+      this.f9 = false;
       this.updateURLQuery();
     },
     noFiltrosUsed() {
       return (
-        this.checkbox1 ||
-        this.checkbox2 ||
-        this.checkbox3 ||
-        this.checkbox4 ||
-        this.checkbox5 ||
-        this.checkbox6 ||
-        this.checkbox7 ||
-        this.checkbox8 ||
-        this.checkbox9
+        this.f1 ||
+        this.f2 ||
+        this.f3 ||
+        this.f4 ||
+        this.f5 ||
+        this.f6 ||
+        this.f7 ||
+        this.f8 ||
+        this.f9
       );
     },
     // Este metodo actualiza el url cuando los checkboxes cambian
     updateURLQuery() {
       if (
-        this.checkbox1 === true ||
-        this.checkbox1 === false ||
-        this.checkbox2 === true ||
-        this.checkbox2 === false ||
-        this.checkbox3 === true ||
-        this.checkbox3 === false ||
-        this.checkbox4 === true ||
-        this.checkbox4 === false ||
-        this.checkbox5 === true ||
-        this.checkbox5 === false ||
-        this.checkbox6 === true ||
-        this.checkbox6 === false ||
-        this.checkbox7 === true ||
-        this.checkbox7 === false ||
-        this.checkbox8 === true ||
-        this.checkbox8 === false ||
-        this.checkbox9 === true ||
-        this.checkbox9 === false
+        this.f1 === true ||
+        this.f1 === false ||
+        this.f2 === true ||
+        this.f2 === false ||
+        this.f3 === true ||
+        this.f3 === false ||
+        this.f4 === true ||
+        this.f4 === false ||
+        this.f5 === true ||
+        this.f5 === false ||
+        this.f6 === true ||
+        this.f6 === false ||
+        this.f7 === true ||
+        this.f7 === false ||
+        this.f8 === true ||
+        this.f8 === false ||
+        this.f9 === true ||
+        this.f9 === false
       ) {
         this.$router.push({
           name: "filtros",
@@ -466,15 +466,15 @@ export default {
             departamento: this.currentRegion.region
           },
           query: {
-            checkbox1: this.checkbox1,
-            checkbox2: this.checkbox2,
-            checkbox3: this.checkbox3,
-            checkbox4: this.checkbox4,
-            checkbox5: this.checkbox5,
-            checkbox6: this.checkbox6,
-            checkbox7: this.checkbox7,
-            checkbox8: this.checkbox8,
-            checkbox9: this.checkbox9
+            f1: this.f1,
+            f2: this.f2,
+            f3: this.f3,
+            f4: this.f4,
+            f5: this.f5,
+            f6: this.f6,
+            f7: this.f7,
+            f8: this.f8,
+            f9: this.f9
           }
         });
       }
@@ -488,15 +488,15 @@ export default {
           name: "filtros",
           params: { departamento: this.currentRegion.region },
           query: {
-            checkbox1: this.checkbox1,
-            checkbox2: this.checkbox2,
-            checkbox3: this.checkbox3,
-            checkbox4: this.checkbox4,
-            checkbox5: this.checkbox5,
-            checkbox6: this.checkbox6,
-            checkbox7: this.checkbox7,
-            checkbox8: this.checkbox8,
-            checkbox9: this.checkbox9
+            f1: this.f1,
+            f2: this.f2,
+            f3: this.f3,
+            f4: this.f4,
+            f5: this.f5,
+            f6: this.f6,
+            f7: this.f7,
+            f8: this.f8,
+            f9: this.f9
           }
         });
       }
@@ -515,15 +515,15 @@ export default {
         );
         if (newDefault[0].region) {
           this.currentRegion = newDefault[0];
-          this.checkbox1 = queryParams.checkbox1 == "true";
-          this.checkbox2 = queryParams.checkbox2 == "true";
-          this.checkbox3 = queryParams.checkbox3 == "true";
-          this.checkbox4 = queryParams.checkbox4 == "true";
-          this.checkbox5 = queryParams.checkbox5 == "true";
-          this.checkbox6 = queryParams.checkbox6 == "true";
-          this.checkbox7 = queryParams.checkbox7 == "true";
-          this.checkbox8 = queryParams.checkbox8 == "true";
-          this.checkbox9 = queryParams.checkbox9 == "true";
+          this.f1 = queryParams.f1 == "true";
+          this.f2 = queryParams.f2 == "true";
+          this.f3 = queryParams.f3 == "true";
+          this.f4 = queryParams.f4 == "true";
+          this.f5 = queryParams.f5 == "true";
+          this.f6 = queryParams.f6 == "true";
+          this.f7 = queryParams.f7 == "true";
+          this.f8 = queryParams.f8 == "true";
+          this.f9 = queryParams.f9 == "true";
           this.sendToGA();
           this.reAttachTwitterButton();
         }
