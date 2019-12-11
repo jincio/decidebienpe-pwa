@@ -19,12 +19,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar
-      app
-      clipped-left
-      color="red"
-      dense
-    >
+    <v-app-bar app clipped-left color="red" dense>
       <v-app-bar-nav-icon class="white--text" @click.stop="drawer = !drawer" />
       <v-toolbar-title class="mr-12 align-center">
         <span class="white--text title">DecideBien.pe</span>
@@ -32,9 +27,7 @@
     </v-app-bar>
 
     <v-content>
-      <v-container class="fill-height">
-        <router-view/>
-      </v-container>
+      <router-view />
     </v-content>
   </v-app>
 </template>
@@ -42,16 +35,22 @@
 <script>
   export default {
     props: {
-      source: String,
-    },
-    data: () => ({
-      drawer: null,
-      items: [
-        { icon: 'mdi-home', text: 'Inicio', path: "/" },
-        { icon: 'mdi-file-document-box', text: 'Visualizaciones', path: "/resumen"  },
-        { icon: 'mdi-filter', text: "Filtros", path: '/filtros' },
-        { icon: 'mdi-contact-mail', text: 'Créditos', path: '/creditos' },
-      ]
-    })
-  }
+    source: String
+  },
+  data: () => ({
+    drawer: null,
+    // TODO: Mover esta logica en un componente al que podamos decidir si es 'link' o si bloqueamos el click/re-direct
+    // cuando se hace click in filtros estando en filtros...
+    items: [
+      { icon: "mdi-home", text: "Inicio", path: "/" },
+      { icon: "mdi-filter", text: "Filtrar", path: "/filtros" },
+      {
+        icon: "mdi-file-document-box",
+        text: "Resúmen General",
+        path: "/resumen"
+      },
+      { icon: "mdi-contact-mail", text: "Créditos", path: "/creditos" }
+    ]
+  })
+};
 </script>

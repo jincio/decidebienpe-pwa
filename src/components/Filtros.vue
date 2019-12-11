@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-layout row>
-      <v-flex md4 class="mb-2">
+      <v-flex md4 class="pl-4 mb-2">
         <v-card class="pa-2 mx-2" shaped>
           <v-select
             :items="regiones"
@@ -28,7 +28,7 @@
 
           <!-- Container para el boton de Twitter -->
           <div class="fixedHeight"><div ref="container"></div></div>
-          
+
           <v-divider />
 
           <v-chip
@@ -513,7 +513,7 @@ export default {
         const newDefault = this.regiones.filter(
           region => region.region == urlDepto
         );
-        if (newDefault[0].region) {
+        if (newDefault && newDefault[0].region) {
           this.currentRegion = newDefault[0];
           this.f1 = queryParams.f1 == "true";
           this.f2 = queryParams.f2 == "true";
