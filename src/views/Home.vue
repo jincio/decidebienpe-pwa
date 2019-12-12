@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row>
       <v-col cols="12">
-        <v-row align="start" justify="center" style="height: 300px;">
+        <v-row align="start" justify="center">
           <v-card class="ma-3 pa-6 red lighten-3 text-center" outlined tile>
             <h1>Decide Bien</h1>
             <h2>
@@ -15,7 +15,9 @@
             </p>
           </v-card>
         </v-row>
-        <v-row align="start" justify="center" style="height: 300px;">
+      </v-col>
+      <v-col cols="12">
+        <v-row align="start" justify="center">
           <v-card class="pa-5" shaped>
             <v-select
               :items="regiones"

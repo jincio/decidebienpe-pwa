@@ -2,20 +2,10 @@
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" app clipped>
       <v-list dense>
-        <v-list-item
-          v-for="item in items"
-          :key="item.text"
-          link :to="{path:item.path}"
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ item.text }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        <enlace :item="items[0]"></enlace>
+        <enlace :item="items[1]"></enlace>
+        <enlace :item="items[2]"></enlace>
+        <enlace :item="items[3]"></enlace>
       </v-list>
     </v-navigation-drawer>
 
@@ -33,9 +23,14 @@
 </template>
 
 <script>
-  export default {
-    props: {
+import Enlace from "./components/Enlace";
+
+export default {
+  props: {
     source: String
+  },
+  components: {
+    Enlace
   },
   data: () => ({
     drawer: null,
