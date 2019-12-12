@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-2 mx-2">
+  <v-card class="pa-2 mx-2" v-show="currentRegion.region" >
     <h3 class="mt-5 text-center">
       En el Departamento de
       <v-chip color="red" text-color="white"> {{ showRegion }} </v-chip>

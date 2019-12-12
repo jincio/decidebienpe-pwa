@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container fluid>
     <v-layout row>
       <v-flex md4 class="pl-4 mb-2">
         <v-card class="pa-2 mx-2" shaped>
@@ -21,13 +21,16 @@
               tile
               outlined
               color="blue-grey"
+              v-bind:disabled="!currentRegion.region"
             >
               <v-icon left>mdi-map-marker-off</v-icon>Quitar Filtros
             </v-btn>
           </v-layout>
 
           <!-- Container para el boton de Twitter -->
-          <div class="fixedHeight"><div ref="container"></div></div>
+          <div class="fixedHeight">
+            <div ref="container"></div>
+          </div>
 
           <v-divider />
 
@@ -105,9 +108,7 @@
               f7 = false;
               updateURLQuery();
             "
-          >
-            E.de G. > 30%
-          </v-chip>
+          >E.de G. > 30%</v-chip>
           <v-chip
             v-if="f8"
             class="ma-2"
@@ -116,9 +117,7 @@
               f8 = false;
               updateURLQuery();
             "
-          >
-            Paridad
-          </v-chip>
+          >Paridad</v-chip>
           <v-chip
             v-if="f9"
             class="ma-2"
@@ -127,19 +126,13 @@
               f9 = false;
               updateURLQuery();
             "
-          >
-            Mujer Cabeza de Lista
-          </v-chip>
+          >Mujer Cabeza de Lista</v-chip>
           <v-divider />
-          <h3 class="subheading font-weight-regular mb-2 mt2">
-            ¿Qué buscas en una lista?
-          </h3>
+          <h3 class="subheading font-weight-regular mb-2 mt2">¿Qué buscas en una lista?</h3>
           <!-- TODO -->
-          <v-expansion-panels>
+          <v-expansion-panels v-bind:disabled="!noRegionSelected">
             <v-expansion-panel>
-              <v-expansion-panel-header>
-                ¿Que los candidatos no tengan sentencias?
-              </v-expansion-panel-header>
+              <v-expansion-panel-header>¿Que los candidatos no tengan sentencias?</v-expansion-panel-header>
               <v-expansion-panel-content>
                 <v-row>
                   <v-col>
@@ -187,12 +180,7 @@
                   </v-col>
 
                   <v-col>
-                    <v-checkbox
-                      v-model="f3"
-                      @change="updateURLQuery()"
-                      color="info"
-                      :label="`PPK`"
-                    ></v-checkbox>
+                    <v-checkbox v-model="f3" @change="updateURLQuery()" color="info" :label="`PPK`"></v-checkbox>
                     <v-checkbox
                       v-model="f4"
                       @change="updateURLQuery()"
@@ -205,9 +193,7 @@
             </v-expansion-panel>
 
             <v-expansion-panel>
-              <v-expansion-panel-header>
-                ¿Que promuevan la equidad de género?
-              </v-expansion-panel-header>
+              <v-expansion-panel-header>¿Que promuevan la equidad de género?</v-expansion-panel-header>
               <v-expansion-panel-content>
                 <v-row>
                   <v-col>
@@ -240,14 +226,16 @@
       </v-flex>
       <!-- TODO -->
       <v-flex md8>
-        <resultados
-          :current-region="currentRegion"
-          :data-table1="filtroTabla1"
-          :data-table2="filtroTabla2"
-        ></resultados>
+        <transition name="fade" appear>
+          <resultados
+            :current-region="currentRegion"
+            :data-table1="filtroTabla1"
+            :data-table2="filtroTabla2"
+          ></resultados>
+        </transition>
       </v-flex>
     </v-layout>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -361,6 +349,9 @@ export default {
     };
   },
   computed: {
+    noRegionSelected() {
+      return !!this.currentRegion.region;
+    },
     regiones() {
       return this.$store.state.regiones;
     },
@@ -414,16 +405,30 @@ export default {
       }
     },
     onNoFiltrosClicked() {
-      this.f1 = false;
-      this.f2 = false;
-      this.f3 = false;
-      this.f4 = false;
-      this.f5 = false;
-      this.f6 = false;
-      this.f7 = false;
-      this.f8 = false;
-      this.f9 = false;
-      this.updateURLQuery();
+      if (
+        this.f1 == false &&
+        this.f2 == false &&
+        this.f3 == false &&
+        this.f4 == false &&
+        this.f5 == false &&
+        this.f6 == false &&
+        this.f7 == false &&
+        this.f8 == false &&
+        this.f9
+      ) {
+        return;
+      } else {
+        this.f1 = false;
+        this.f2 = false;
+        this.f3 = false;
+        this.f4 = false;
+        this.f5 = false;
+        this.f6 = false;
+        this.f7 = false;
+        this.f8 = false;
+        this.f9 = false;
+        this.updateURLQuery();
+      }
     },
     noFiltrosUsed() {
       return (
@@ -460,23 +465,29 @@ export default {
         this.f9 === true ||
         this.f9 === false
       ) {
-        this.$router.push({
-          name: "filtros",
-          params: {
-            departamento: this.currentRegion.region
-          },
-          query: {
-            f1: this.f1,
-            f2: this.f2,
-            f3: this.f3,
-            f4: this.f4,
-            f5: this.f5,
-            f6: this.f6,
-            f7: this.f7,
-            f8: this.f8,
-            f9: this.f9
-          }
-        });
+        // TODO: refactorizar para evitar el error. Baja prioridad.
+        // .push bota un error en el console cuando se trata ir al mismo route existente,
+        this.$router
+          .push({
+            name: "filtros",
+            params: {
+              departamento: this.currentRegion.region
+            },
+            query: {
+              f1: this.f1,
+              f2: this.f2,
+              f3: this.f3,
+              f4: this.f4,
+              f5: this.f5,
+              f6: this.f6,
+              f7: this.f7,
+              f8: this.f8,
+              f9: this.f9
+            }
+          })
+          .catch(err => {
+            throw new Error(`Problem handling something: ${err}.`);
+          });
       }
       this.sendToGA();
       this.reAttachTwitterButton();
@@ -547,5 +558,12 @@ export default {
 <style scoped>
 .fixedHeight {
   height: 75px;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
