@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container>
     <v-layout row>
       <v-flex md4 class="pl-4 mb-2">
         <v-card class="pa-2 mx-2" shaped>
