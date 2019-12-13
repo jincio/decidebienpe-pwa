@@ -38,7 +38,6 @@
 </template>
 
 <script>
-// import Filtros from '../components/Filtros'
 
 export default {
   name: "home",

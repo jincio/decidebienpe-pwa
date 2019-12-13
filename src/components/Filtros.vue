@@ -1,6 +1,5 @@
 <template>
-  <v-container>
-    <v-layout row>
+    <v-row>
       <v-flex md4 class="pl-4 mb-2">
         <v-card class="pa-2 mx-2" shaped>
           <v-select
@@ -234,8 +233,7 @@
           ></resultados>
         </transition>
       </v-flex>
-    </v-layout>
-  </v-container>
+    </v-row>
 </template>
 
 <script>

@@ -1,10 +1,6 @@
 <template>
-  <v-container>
-    <v-layout row>
-      <v-flex md12>
+  <v-container fluid>
         <filtros></filtros>
-      </v-flex>
-    </v-layout>
   </v-container>
 </template>
 
@@ -14,7 +10,6 @@
   import Filtros from '../components/Filtros'
   
   export default {
-    name: "home",
     components: {
       Filtros
     }
