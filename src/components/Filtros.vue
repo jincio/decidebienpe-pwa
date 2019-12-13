@@ -1,6 +1,6 @@
 <template>
     <v-row>
-      <v-flex md4 class="pl-4 mb-2">
+      <v-flex md4 class="mb-2">
         <v-card class="pa-2 mx-2" shaped>
           <v-select
             :items="regiones"
