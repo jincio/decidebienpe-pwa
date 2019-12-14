@@ -72,7 +72,9 @@
               id="message"
               v-model="formData.message"
             ></textarea>
-            <input class="form-button" type="submit" value="Send message" />
+            <div class="text-center">
+              <input class="form-button primary" type="submit" value="Enviar" />
+            </div>
           </form>
         </v-card-text>
       </v-card>
@@ -112,8 +114,7 @@ textarea {
 }
 
 input[type="submit"] {
-  width: 100%;
-  background-color: #4caf50;
+  width: 40%;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
