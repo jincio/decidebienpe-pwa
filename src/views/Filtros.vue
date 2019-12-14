@@ -1,17 +1,16 @@
 <template>
   <v-container fluid>
-        <filtros></filtros>
+    <filtros></filtros>
   </v-container>
 </template>
 
 
 <script>
+import Filtros from "../components/Filtros";
 
-  import Filtros from '../components/Filtros'
-  
-  export default {
-    components: {
-      Filtros
-    }
-  };
+export default {
+  components: {
+    Filtros
+  }
+};
 </script>

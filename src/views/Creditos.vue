@@ -2,17 +2,14 @@
   <div class="about">
     <p>
       Este app está en línea gracias al auspicio de
-      <a
-        href="https://www.transparencia.org.pe/"
-      >ASOCIACIÓN CIVIL TRANSPARENCIA</a>
+      <a href="https://www.transparencia.org.pe/"
+        >ASOCIACIÓN CIVIL TRANSPARENCIA</a
+      >
       y a la generosa donación de amig@s. Para ver la lista responsables,
       aportantes, colaboradores y más información sobre los filtros, revisa
       aquí. Esta plataforma fue iniciada por José Incio y ahora cuenta con
       much@s colaboradores Cualquier error con la data escribe a:
-      <a
-        href="mailto:"
-        target="_top"
-      >jincio@gmail.com</a>
+      <a href="mailto:" target="_top">jincio@gmail.com</a>
     </p>
     <h4>Donantes:</h4>
     <ul>
@@ -31,7 +28,8 @@
         </v-card-title>
 
         <v-card-text class="px-4">
-          <form @submit.prevent="handleSubmit"
+          <form
+            @submit.prevent="handleSubmit"
             name="preguntas"
             netlify-honeypot="bot-field"
             action="/success/"
@@ -47,11 +45,26 @@
               </label>
             </p>
             <label class="form-label" for="name">Nombre</label>
-            <input class="form-field" name="name" id="name" v-model="formData.name" />
+            <input
+              class="form-field"
+              name="name"
+              id="name"
+              v-model="formData.name"
+            />
             <label class="form-label" for="email">Correo Electrónico</label>
-            <input class="form-field" name="email" id="email" v-model="formData.email" />
+            <input
+              class="form-field"
+              name="email"
+              id="email"
+              v-model="formData.email"
+            />
             <label class="form-label" for="message">Mensaje</label>
-            <textarea class="form-field" name="message" id="message" v-model="formData.message"></textarea>
+            <textarea
+              class="form-field"
+              name="message"
+              id="message"
+              v-model="formData.message"
+            ></textarea>
             <input class="form-button" type="submit" value="Send message" />
           </form>
         </v-card-text>
@@ -123,7 +136,7 @@ export default {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: this.encode({
-          'form-name': e.target.getAttribute("name"),
+          "form-name": e.target.getAttribute("name"),
           ...this.formData
         })
       })
