@@ -1,5 +1,10 @@
 <template>
-  <div class="about">
-    <h1>Aquí resumen de la información por partido.</h1>
-  </div>
+  <v-container>
+    <v-flex xs12 md6 pt-4>
+      
+      
+      
+      
+    </v-flex>
+  </v-container>
 </template>
