@@ -238,7 +238,7 @@
 
 <script>
 import Resultados from "../components/Resultados.vue";
-import Button from "../components/Button.vue";
+import Twitter from "../components/Twitter.vue";
 import Vue from "vue";
 
 let myMixin = {
@@ -385,7 +385,7 @@ export default {
           this.$refs.container.children &&
           this.$refs.container.children[0];
 
-        var ComponentClass = Vue.extend(Button);
+        var ComponentClass = Vue.extend(Twitter);
         var instance = new ComponentClass({
           propsData: { type: "primary" }
         });

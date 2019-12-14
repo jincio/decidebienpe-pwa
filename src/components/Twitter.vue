@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "Button",
+  name: "Twitter",
   props: ["type"],
 }
 </script>
