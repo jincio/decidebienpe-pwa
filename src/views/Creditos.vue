@@ -1,26 +1,33 @@
 <template>
-  <div class="about">
-    <p>
-      Este app está en línea gracias al auspicio de
-      <a href="https://www.transparencia.org.pe/"
-        >ASOCIACIÓN CIVIL TRANSPARENCIA</a
-      >
-      y a la generosa donación de amig@s. Para ver la lista responsables,
-      aportantes, colaboradores y más información sobre los filtros, revisa
-      aquí. Esta plataforma fue iniciada por José Incio y ahora cuenta con
-      much@s colaboradores Cualquier error con la data escribe a:
-      <a href="mailto:" target="_top">jincio@gmail.com</a>
-    </p>
-    <h4>Donantes:</h4>
-    <ul>
-      <li>Angelina Cotler (@CotlerAngelina)</li>
-      <li>Javier Tarrillo (@jtarrillov)</li>
-      <li>Eliana Carlin (@ElianaCarlin)</li>
-      <li>Ricardo Moran (@RicardoMoran)</li>
-      <li>Michele Gabriela Fernandez (@@La_micha)</li>
-    </ul>
+  <v-container>
     <v-flex xs12 md6 pt-4>
       <v-card height="100%">
+        <v-card-text class="px-4">
+          <p>
+            Este app está en línea gracias al auspicio de
+            <a href="https://www.transparencia.org.pe/"
+              >ASOCIACIÓN CIVIL TRANSPARENCIA</a
+            >
+            y a la generosa donación de amig@s. Para ver la lista responsables,
+            aportantes, colaboradores y más información sobre los filtros,
+            revisa aquí. Esta plataforma fue iniciada por José Incio y ahora
+            cuenta con much@s colaboradores Cualquier error con la data escribe
+            a:
+            <a href="mailto:" target="_top">jincio@gmail.com</a>
+          </p>
+          <h4>Donantes:</h4>
+          <ul>
+            <li>Angelina Cotler (@CotlerAngelina)</li>
+            <li>Javier Tarrillo (@jtarrillov)</li>
+            <li>Eliana Carlin (@ElianaCarlin)</li>
+            <li>Ricardo Moran (@RicardoMoran)</li>
+            <li>Michele Gabriela Fernandez (@@La_micha)</li>
+          </ul>
+        </v-card-text>
+      </v-card>
+    </v-flex>
+    <v-flex xs12 md6 pt-4>
+      <v-card height="100%" disabled>
         <v-card-title primary-title>
           <div>
             <h1 class="headline">Escríbenos</h1>
@@ -70,7 +77,7 @@
         </v-card-text>
       </v-card>
     </v-flex>
-  </div>
+  </v-container>
 </template>
 
 <style scoped>
