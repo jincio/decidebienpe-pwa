@@ -31,7 +31,7 @@
           <div ref="container"></div>
         </div>
 
-        <v-divider :hidden="$vuetify.breakpoint.xsOnly" />
+        <v-divider v-show="!$vuetify.breakpoint.xsOnly" />
 
         <v-chip
           v-if="f1"
@@ -139,17 +139,17 @@
           "
           >Militancia</v-chip
         >
-        <v-divider :hidden="$vuetify.breakpoint.xsOnly" />
+        <v-divider v-show="!$vuetify.breakpoint.xsOnly" />
         <h3
           class="subheading font-weight-regular mb-2 mt2"
-          :hidden="$vuetify.breakpoint.xsOnly"
+          v-show="!$vuetify.breakpoint.xsOnly"
         >
           ¿Qué buscas en una lista?
         </h3>
         <!-- TODO -->
         <v-expansion-panels
           v-bind:disabled="!noRegionSelected"
-          :hidden="$vuetify.breakpoint.xsOnly"
+          v-show="!$vuetify.breakpoint.xsOnly"
         >
           <v-expansion-panel>
             <v-expansion-panel-header

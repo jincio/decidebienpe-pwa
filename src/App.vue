@@ -2,7 +2,7 @@
   <v-app id="app">
     <v-navigation-drawer
       v-model="drawerRight"
-      :hidden="!$vuetify.breakpoint.xsOnly"
+      v-show="$vuetify.breakpoint.xsOnly"
       app
       clipped
       right
