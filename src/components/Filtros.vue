@@ -509,6 +509,7 @@ export default {
     reAttachTwitterButton() {
       if (window.twttr) {
         var first =
+          this.$refs &&
           this.$refs.container &&
           this.$refs.container.children &&
           this.$refs.container.children[0];
@@ -520,9 +521,13 @@ export default {
         instance.$mount(); // pass nothing
 
         if (!first) {
-          this.$refs.container.appendChild(instance.$el);
+          this.$refs &&
+            this.$refs.container &&
+            this.$refs.container.appendChild(instance.$el);
         } else {
-          this.$refs.container.replaceChild(instance.$el, first);
+          this.$refs &&
+            this.$refs.container &&
+            this.$refs.container.replaceChild(instance.$el, first);
         }
 
         if (window.twttr.widgets) {
