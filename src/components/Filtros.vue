@@ -1,245 +1,295 @@
 <template>
-    <v-row>
-      <v-flex md4 class="mb-2">
-        <v-card class="pa-2 mx-2" shaped>
-          <v-select
-            :items="regiones"
-            item-text="region"
-            item-value="codigo"
-            label="Elije tu departamento:"
-            v-model="currentRegion"
-            prepend-icon="mdi-map"
-            color="secondary"
-            :return-object="true"
-            v-on:change="updateURLParams"
-          ></v-select>
-          <v-layout text-xs-center align-center justify-center>
-            <v-btn
-              @click="onNoFiltrosClicked"
-              class="ma-2"
-              tile
-              outlined
-              color="blue-grey"
-              v-bind:disabled="!currentRegion.region"
+  <v-row>
+    <v-flex md4 class="mb-2">
+      <v-card class="pa-2 mx-2 grey lighten-4" shaped>
+        <v-select
+          :items="regiones"
+          item-text="region"
+          item-value="codigo"
+          label="Elije tu departamento:"
+          v-model="currentRegion"
+          prepend-icon="mdi-map"
+          color="secondary"
+          :return-object="true"
+          v-on:change="updateURLParams"
+        ></v-select>
+        <v-layout text-xs-center align-center justify-center>
+          <v-btn
+            @click="onNoFiltrosClicked"
+            class="ma-2"
+            tile
+            outlined
+            color="blue-grey"
+            v-bind:disabled="!currentRegion.region"
+          >
+            <v-icon left>mdi-map-marker-off</v-icon>Quitar Filtros
+          </v-btn>
+        </v-layout>
+
+        <!-- Container para el boton de Twitter -->
+        <div class="fixedHeight">
+          <div ref="container"></div>
+        </div>
+
+        <v-divider :hidden="$vuetify.breakpoint.xsOnly" />
+
+        <v-chip
+          v-if="f1"
+          class="ma-2"
+          close
+          @click:close="
+            f1 = false;
+            updateURLQuery();
+          "
+        >
+          <v-icon left>mdi-alert</v-icon>Fujimorismo
+        </v-chip>
+        <v-chip
+          v-if="f2"
+          class="ma-2"
+          close
+          @click:close="
+            f2 = false;
+            updateURLQuery();
+          "
+        >
+          <v-icon left>mdi-alert</v-icon>Apra/PPC
+        </v-chip>
+        <v-chip
+          v-if="f3"
+          class="ma-2"
+          close
+          @click:close="
+            f3 = false;
+            updateURLQuery();
+          "
+        >
+          <v-icon left>mdi-alert</v-icon>PPK
+        </v-chip>
+        <v-chip
+          v-if="f4"
+          class="ma-2"
+          close
+          @click:close="
+            f4 = false;
+            updateURLQuery();
+          "
+        >
+          <v-icon left>mdi-alert</v-icon>Frente Amplio
+        </v-chip>
+        <v-chip
+          v-if="f5"
+          class="ma-2"
+          close
+          @click:close="
+            f5 = false;
+            updateURLQuery();
+          "
+        >
+          <v-icon left>mdi-alert</v-icon>S. Penales
+        </v-chip>
+        <v-chip
+          v-if="f6"
+          class="ma-2"
+          close
+          @click:close="
+            f6 = false;
+            updateURLQuery();
+          "
+        >
+          <v-icon left>mdi-alert</v-icon>S. Alimentarias
+        </v-chip>
+        <v-chip
+          v-if="f7"
+          class="ma-2"
+          close
+          @click:close="
+            f7 = false;
+            updateURLQuery();
+          "
+          >E.de G. > 30%</v-chip
+        >
+        <v-chip
+          v-if="f8"
+          class="ma-2"
+          close
+          @click:close="
+            f8 = false;
+            updateURLQuery();
+          "
+          >Paridad</v-chip
+        >
+        <v-chip
+          v-if="f9"
+          class="ma-2"
+          close
+          @click:close="
+            f9 = false;
+            updateURLQuery();
+          "
+          >Mujer Cabeza de Lista</v-chip
+        >
+        <v-chip
+          v-if="f10"
+          class="ma-2"
+          close
+          @click:close="
+            f9 = false;
+            updateURLQuery();
+          "
+          >Militancia</v-chip
+        >
+        <v-divider :hidden="$vuetify.breakpoint.xsOnly" />
+        <h3
+          class="subheading font-weight-regular mb-2 mt2"
+          :hidden="$vuetify.breakpoint.xsOnly"
+        >
+          ¿Qué buscas en una lista?
+        </h3>
+        <!-- TODO -->
+        <v-expansion-panels
+          v-bind:disabled="!noRegionSelected"
+          :hidden="$vuetify.breakpoint.xsOnly"
+        >
+          <v-expansion-panel>
+            <v-expansion-panel-header
+              >¿Que los candidatos no tengan
+              sentencias?</v-expansion-panel-header
             >
-              <v-icon left>mdi-map-marker-off</v-icon>Quitar Filtros
-            </v-btn>
-          </v-layout>
+            <v-expansion-panel-content>
+              <v-row>
+                <v-col>
+                  <v-checkbox
+                    v-model="f5"
+                    @change="updateURLQuery()"
+                    color="info"
+                    :label="
+                      `Deseo descartar listas que tengan candidat@s con sentencias penales (Declaradas en Hoja de Vida)`
+                    "
+                  ></v-checkbox>
+                  <v-checkbox
+                    v-model="f6"
+                    @change="updateURLQuery()"
+                    color="info"
+                    :label="
+                      `Deseo descartar listas que tengan candidat@s con sentencias alimentarias (Declaradas en Hoja de Vida)`
+                    "
+                  ></v-checkbox>
+                </v-col>
+              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
 
-          <!-- Container para el boton de Twitter -->
-          <div class="fixedHeight">
-            <div ref="container"></div>
-          </div>
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              Que no incluya listas con ex-congresistas electos (2016-2019) por:
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-row>
+                <v-col>
+                  <v-checkbox
+                    v-model="f1"
+                    @change="updateURLQuery()"
+                    color="info"
+                    :label="`Fujimorismo`"
+                  ></v-checkbox>
+                  <v-checkbox
+                    v-model="f2"
+                    @change="updateURLQuery()"
+                    color="info"
+                    :label="`Apra/PPC`"
+                  ></v-checkbox>
+                </v-col>
 
-          <v-divider />
+                <v-col>
+                  <v-checkbox
+                    v-model="f3"
+                    @change="updateURLQuery()"
+                    color="info"
+                    :label="`PPK`"
+                  ></v-checkbox>
+                  <v-checkbox
+                    v-model="f4"
+                    @change="updateURLQuery()"
+                    color="info"
+                    :label="`Frente Amplio`"
+                  ></v-checkbox>
+                </v-col>
+              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
 
-          <v-chip
-            v-if="f1"
-            class="ma-2"
-            close
-            @click:close="
-              f1 = false;
-              updateURLQuery();
-            "
-          >
-            <v-icon left>mdi-alert</v-icon>Fujimorismo
-          </v-chip>
-          <v-chip
-            v-if="f2"
-            class="ma-2"
-            close
-            @click:close="
-              f2 = false;
-              updateURLQuery();
-            "
-          >
-            <v-icon left>mdi-alert</v-icon>Apra/PPC
-          </v-chip>
-          <v-chip
-            v-if="f3"
-            class="ma-2"
-            close
-            @click:close="
-              f3 = false;
-              updateURLQuery();
-            "
-          >
-            <v-icon left>mdi-alert</v-icon>PPK
-          </v-chip>
-          <v-chip
-            v-if="f4"
-            class="ma-2"
-            close
-            @click:close="
-              f4 = false;
-              updateURLQuery();
-            "
-          >
-            <v-icon left>mdi-alert</v-icon>Frente Amplio
-          </v-chip>
-          <v-chip
-            v-if="f5"
-            class="ma-2"
-            close
-            @click:close="
-              f5 = false;
-              updateURLQuery();
-            "
-          >
-            <v-icon left>mdi-alert</v-icon>S. Penales
-          </v-chip>
-          <v-chip
-            v-if="f6"
-            class="ma-2"
-            close
-            @click:close="
-              f6 = false;
-              updateURLQuery();
-            "
-          >
-            <v-icon left>mdi-alert</v-icon>S. Alimentarias
-          </v-chip>
-          <v-chip
-            v-if="f7"
-            class="ma-2"
-            close
-            @click:close="
-              f7 = false;
-              updateURLQuery();
-            "
-          >E.de G. > 30%</v-chip>
-          <v-chip
-            v-if="f8"
-            class="ma-2"
-            close
-            @click:close="
-              f8 = false;
-              updateURLQuery();
-            "
-          >Paridad</v-chip>
-          <v-chip
-            v-if="f9"
-            class="ma-2"
-            close
-            @click:close="
-              f9 = false;
-              updateURLQuery();
-            "
-          >Mujer Cabeza de Lista</v-chip>
-          <v-divider />
-          <h3 class="subheading font-weight-regular mb-2 mt2">¿Qué buscas en una lista?</h3>
-          <!-- TODO -->
-          <v-expansion-panels v-bind:disabled="!noRegionSelected">
-            <v-expansion-panel>
-              <v-expansion-panel-header>¿Que los candidatos no tengan sentencias?</v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <v-row>
-                  <v-col>
-                    <v-checkbox
-                      v-model="f5"
-                      @change="updateURLQuery()"
-                      color="info"
-                      :label="
-                        `Deseo descartar listas que tengan candidat@s con sentencias penales (Declaradas en Hoja de Vida)`
-                      "
-                    ></v-checkbox>
-                    <v-checkbox
-                      v-model="f6"
-                      @change="updateURLQuery()"
-                      color="info"
-                      :label="
-                        `Deseo descartar listas que tengan candidat@s con sentencias alimentarias (Declaradas en Hoja de Vida)`
-                      "
-                    ></v-checkbox>
-                  </v-col>
-                </v-row>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
+          <v-expansion-panel>
+            <v-expansion-panel-header
+              >¿Que promuevan la equidad de género?</v-expansion-panel-header
+            >
+            <v-expansion-panel-content>
+              <v-row>
+                <v-col>
+                  <v-checkbox
+                    v-model="f7"
+                    @change="updateURLQuery()"
+                    color="info"
+                    :label="
+                      `Deseo listas con más de lo requerido en la cuota (> 30%)`
+                    "
+                  ></v-checkbox>
+                  <v-checkbox
+                    v-model="f8"
+                    @change="updateURLQuery()"
+                    color="info"
+                    :label="`Deseo listas con paridad (50%)`"
+                  ></v-checkbox>
+                  <v-checkbox
+                    v-model="f9"
+                    @change="updateURLQuery()"
+                    color="info"
+                    :label="`Deseo listas con una mujer como cabeza de lista`"
+                  ></v-checkbox>
+                </v-col>
+              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
 
-            <v-expansion-panel>
-              <v-expansion-panel-header>
-                Que no incluya listas con ex-congresistas electos (2016-2019)
-                por:
-              </v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <v-row>
-                  <v-col>
-                    <v-checkbox
-                      v-model="f1"
-                      @change="updateURLQuery()"
-                      color="info"
-                      :label="`Fujimorismo`"
-                    ></v-checkbox>
-                    <v-checkbox
-                      v-model="f2"
-                      @change="updateURLQuery()"
-                      color="info"
-                      :label="`Apra/PPC`"
-                    ></v-checkbox>
-                  </v-col>
-
-                  <v-col>
-                    <v-checkbox v-model="f3" @change="updateURLQuery()" color="info" :label="`PPK`"></v-checkbox>
-                    <v-checkbox
-                      v-model="f4"
-                      @change="updateURLQuery()"
-                      color="info"
-                      :label="`Frente Amplio`"
-                    ></v-checkbox>
-                  </v-col>
-                </v-row>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-
-            <v-expansion-panel>
-              <v-expansion-panel-header>¿Que promuevan la equidad de género?</v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <v-row>
-                  <v-col>
-                    <v-checkbox
-                      v-model="f7"
-                      @change="updateURLQuery()"
-                      color="info"
-                      :label="
-                        `Deseo listas con más de lo requerido en la cuota (> 30%)`
-                      "
-                    ></v-checkbox>
-                    <v-checkbox
-                      v-model="f8"
-                      @change="updateURLQuery()"
-                      color="info"
-                      :label="`Deseo listas con paridad (50%)`"
-                    ></v-checkbox>
-                    <v-checkbox
-                      v-model="f9"
-                      @change="updateURLQuery()"
-                      color="info"
-                      :label="`Deseo listas con una mujer como cabeza de lista`"
-                    ></v-checkbox>
-                  </v-col>
-                </v-row>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
-        </v-card>
-      </v-flex>
-      <!-- TODO -->
-      <v-flex md8>
-        <transition name="fade" appear>
-          <resultados
-            :current-region="currentRegion"
-            :data-table1="filtroTabla1"
-            :data-table2="filtroTabla2"
-          ></resultados>
-        </transition>
-      </v-flex>
-    </v-row>
+          <v-expansion-panel>
+            <v-expansion-panel-header
+              >¿Que promuevan a sus militantes?</v-expansion-panel-header
+            >
+            <v-expansion-panel-content>
+              <v-row>
+                <v-col>
+                  <v-checkbox
+                    v-model="f10"
+                    color="info"
+                    :label="
+                      `Deseo EXCLUIR listas donde el número 1 no fue electo en democracia interna`
+                    "
+                  ></v-checkbox>
+                </v-col>
+              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-card>
+    </v-flex>
+    <!-- TODO -->
+    <v-flex md8>
+      <transition name="fade" appear>
+        <resultados
+          :current-region="currentRegion"
+          :data-table1="filtroTabla1"
+          :data-table2="filtroTabla2"
+        ></resultados>
+      </transition>
+    </v-flex>
+  </v-row>
 </template>
 
 <script>
 import Resultados from "../components/Resultados.vue";
 import Twitter from "../components/Twitter.vue";
 import Vue from "vue";
+import { EventBus } from "../eventbus";
 
 let myMixin = {
   // Mixin Methods and Created
@@ -310,6 +360,13 @@ let myMixin = {
         return true;
       }
     },
+    militantesFilter: function(lista) {
+      if (this.f10) {
+        return lista.Designado != 1;
+      } else {
+        return true;
+      }
+    },
     regionFilter: function(lista) {
       return lista.Region === this.currentRegion.region;
     },
@@ -332,21 +389,92 @@ export default {
   data() {
     return {
       dialog: false,
-      f1: false,
-      f2: false,
-      f3: false,
-      f4: false,
-      f5: false,
-      f6: false,
-      f7: false,
-      f8: false,
-      f9: false,
       currentRegion: {
         default: {}
       }
     };
   },
   computed: {
+    f1: {
+      get() {
+        return this.$store.state.filtros.f1;
+      },
+      set(value) {
+        this.$store.commit("updateFiltro1", value);
+      }
+    },
+    f2: {
+      get() {
+        return this.$store.state.filtros.f2;
+      },
+      set(value) {
+        this.$store.commit("updateFiltro2", value);
+      }
+    },
+    f3: {
+      get() {
+        return this.$store.state.filtros.f3;
+      },
+      set(value) {
+        this.$store.commit("updateFiltro3", value);
+      }
+    },
+    f4: {
+      get() {
+        return this.$store.state.filtros.f4;
+      },
+      set(value) {
+        this.$store.commit("updateFiltro4", value);
+      }
+    },
+    f5: {
+      get() {
+        return this.$store.state.filtros.f5;
+      },
+      set(value) {
+        this.$store.commit("updateFiltro5", value);
+      }
+    },
+    f6: {
+      get() {
+        return this.$store.state.filtros.f6;
+      },
+      set(value) {
+        this.$store.commit("updateFiltro6", value);
+      }
+    },
+    f7: {
+      get() {
+        return this.$store.state.filtros.f7;
+      },
+      set(value) {
+        this.$store.commit("updateFiltro7", value);
+      }
+    },
+    f8: {
+      get() {
+        return this.$store.state.filtros.f8;
+      },
+      set(value) {
+        this.$store.commit("updateFiltro8", value);
+      }
+    },
+    f9: {
+      get() {
+        return this.$store.state.filtros.f9;
+      },
+      set(value) {
+        this.$store.commit("updateFiltro9", value);
+      }
+    },
+    f10: {
+      get() {
+        return this.$store.state.filtros.f10;
+      },
+      set(value) {
+        this.$store.commit("updateFiltro10", value);
+      }
+    },
     noRegionSelected() {
       return !!this.currentRegion.region;
     },
@@ -546,6 +674,10 @@ export default {
     }
   },
   mounted() {
+    //listening for the custom event
+    EventBus.$on("filter-change", () => {
+      this.updateURLQuery();
+    });
     // TODO: Discutir que tiene mas sentido, elegir un dpto por default o no:
     // Si seleccionamos una region automaticamente, los analytics reportaran esa region mucho mas que las demas
     this.restoreTablesValues();
