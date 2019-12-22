@@ -4,7 +4,6 @@
   </v-container>
 </template>
 
-
 <script>
 import Filtros from "../components/Filtros";
 

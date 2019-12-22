@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import listas from './listas.json'
-import regiones from './regiones.json'
+import Vue from "vue";
+import Vuex from "vuex";
+import listas from "./listas.json";
+import regiones from "./regiones.json";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
@@ -54,8 +54,6 @@ export default new Vuex.Store({
       state.filtros.f10 = payload;
     }
   },
-  actions: {
-  },
-  modules: {
-  }
-})
+  actions: {},
+  modules: {}
+});
