@@ -42,7 +42,7 @@
             updateURLQuery();
           "
         >
-          <v-icon left>mdi-alert</v-icon>Fujimorismo
+          <v-icon left>mdi-alert</v-icon>Fuerza Popular
         </v-chip>
         <v-chip
           v-if="f2"
@@ -53,7 +53,7 @@
             updateURLQuery();
           "
         >
-          <v-icon left>mdi-alert</v-icon>Apra/PPC
+          <v-icon left>mdi-alert</v-icon>Alianza Popular (Apra/PPC)
         </v-chip>
         <v-chip
           v-if="f3"
@@ -134,7 +134,7 @@
           class="ma-2"
           close
           @click:close="
-            f9 = false;
+            f10 = false;
             updateURLQuery();
           "
           >Militancia</v-chip
@@ -191,13 +191,13 @@
                     v-model="f1"
                     @change="updateURLQuery()"
                     color="info"
-                    :label="`Fujimorismo`"
+                    :label="`Fuerza Popular`"
                   ></v-checkbox>
                   <v-checkbox
                     v-model="f2"
                     @change="updateURLQuery()"
                     color="info"
-                    :label="`Apra/PPC`"
+                    :label="`Alianza Popular (Apra/PPC)`"
                   ></v-checkbox>
                 </v-col>
 
@@ -260,6 +260,7 @@
                 <v-col>
                   <v-checkbox
                     v-model="f10"
+                    @change="updateURLQuery()"
                     color="info"
                     :label="
                       `Deseo EXCLUIR listas donde el número 1 no fue electo en democracia interna`
@@ -404,7 +405,8 @@ export default {
           .filter(this.sentencia2Filter)
           .filter(this.genero1Filter)
           .filter(this.genero2Filter)
-          .filter(this.genero3Filter),
+          .filter(this.genero3Filter)
+          .filter(this.militantesFilter),
         "Partido"
       );
     },
@@ -416,7 +418,8 @@ export default {
         .filter(this.sentencia2Filter)
         .filter(this.genero1Filter)
         .filter(this.genero2Filter)
-        .filter(this.genero3Filter);
+        .filter(this.genero3Filter)
+        .filter(this.militantesFilter);
     }
   },
   methods: {
@@ -459,7 +462,8 @@ export default {
         this.f6 == false &&
         this.f7 == false &&
         this.f8 == false &&
-        this.f9
+        this.f9 == false &&
+        this.f10
       ) {
         return;
       } else {
@@ -472,6 +476,7 @@ export default {
         this.f7 = false;
         this.f8 = false;
         this.f9 = false;
+        this.f10 = false;
         this.updateURLQuery();
       }
     },
@@ -485,7 +490,8 @@ export default {
         this.f6 ||
         this.f7 ||
         this.f8 ||
-        this.f9
+        this.f9 ||
+        this.f10
       );
     },
     // Este metodo actualiza el url cuando los checkboxes cambian
@@ -508,7 +514,9 @@ export default {
         this.f8 === true ||
         this.f8 === false ||
         this.f9 === true ||
-        this.f9 === false
+        this.f9 === false ||
+        this.f10 === true ||
+        this.f10 === false
       ) {
         // TODO: refactorizar para evitar el error. Baja prioridad.
         // .push bota un error en el console cuando se trata ir al mismo route existente,
@@ -527,7 +535,8 @@ export default {
               f6: this.f6,
               f7: this.f7,
               f8: this.f8,
-              f9: this.f9
+              f9: this.f9,
+              f10: this.f10
             }
           })
           .catch(err => {
@@ -552,7 +561,8 @@ export default {
             f6: this.f6,
             f7: this.f7,
             f8: this.f8,
-            f9: this.f9
+            f9: this.f9,
+            f10: this.f10
           }
         });
       }
@@ -580,6 +590,7 @@ export default {
           this.f7 = queryParams.f7 == "true";
           this.f8 = queryParams.f8 == "true";
           this.f9 = queryParams.f9 == "true";
+          this.f10 = queryParams.f10 == "true";
           this.sendToGA();
           this.reAttachTwitterButton();
         }

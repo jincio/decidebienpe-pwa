@@ -17,14 +17,14 @@
             <v-checkbox
               v-model="f1"
               color="info"
-              :label="`Fujimorismo`"
+              :label="`Fuerza Popular`"
               class="caption my-0 py-0 px-3"
               @change="filterChanged()"
             ></v-checkbox>
             <v-checkbox
               v-model="f2"
               color="info"
-              :label="`Apra/PPC`"
+              :label="`Alianza Popular (Apra/PPC)`"
               class="caption my-0 py-0 px-3"
               @change="filterChanged()"
             ></v-checkbox>

@@ -69,7 +69,9 @@ export default {
     },
     militantesFilter: function(lista) {
       if (this.f10) {
-        return lista.Designado != 1;
+        // Importante: Algunos candidatos no tienen un valor asignado,
+        // Seria conveniente dar un codigo numerico para ese caso. ex: 999
+        return lista.Designado != undefined && lista.Designado != 1;
       } else {
         return true;
       }
