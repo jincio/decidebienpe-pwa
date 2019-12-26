@@ -6,7 +6,7 @@
           :items="tablasResumen"
           item-text="value"
           item-value="id"
-          label="Elige:"
+          label="Elige un Resumen:"
           v-model="currentResumen"
           prepend-icon="mdi-table"
           color="secondary"
