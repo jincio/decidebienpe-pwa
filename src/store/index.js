@@ -2,6 +2,11 @@ import Vue from "vue";
 import Vuex from "vuex";
 import listas from "./listas.json";
 import regiones from "./regiones.json";
+import resumen from "./resumen.json";
+import t1 from "./t1.json";
+import t2 from "./t2.json";
+import t3 from "./t3.json";
+import t4 from "./t4.json";
 
 Vue.use(Vuex);
 
@@ -9,6 +14,11 @@ export default new Vuex.Store({
   state: {
     listas: listas,
     regiones: regiones,
+    resumen: resumen,
+    t1: t1,
+    t2: t2,
+    t3: t3,
+    t4: t4,
     filtros: {
       f1: false,
       f2: false,
