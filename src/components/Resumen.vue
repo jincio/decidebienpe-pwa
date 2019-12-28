@@ -20,6 +20,7 @@
         <line-chart
           v-if="datacollection"
           :chart-data="datacollection"
+          :options="options"
         ></line-chart>
       </v-flex>
       <v-flex md4>
@@ -44,13 +45,15 @@ export default {
   },
   data() {
     return {
+      options: {},
       datacollection: null,
       currentTabla: [],
       tablasResumen: [
         { id: 1, value: "Experiencia Política" },
-        { id: 2, value: "Delitos Penales" },
-        { id: 3, value: "Otros Delitos" },
-        { id: 4, value: "Mujeres" }
+        { id: 2, value: "Sentencias Penales" },
+        { id: 3, value: "Otras Sentencias" },
+        { id: 4, value: "Inclusión de Género" },
+        { id: 5, value: "Ex Congresistas" }
       ],
       currentResumen: []
     };
@@ -67,6 +70,9 @@ export default {
     },
     t4() {
       return this.$store.state.t4;
+    },
+    resumen() {
+      return this.$store.state.resumen;
     }
   },
   methods: {
@@ -92,13 +98,18 @@ export default {
           this.fillData();
           this.sendToGA();
           break;
+        case 5:
+          this.currentTabla = this.$store.state.resumen;
+          this.fillData();
+          this.sendToGA();
+          break;
       }
     },
     getHeaders() {
       switch (this.currentResumen.id) {
         case 1:
           return [
-            { text: "# de Candidatos", value: "Candidatos" },
+            { text: "# de Candidatos", value: "NumCandidatos" },
             { text: "Cargos Anteriores", value: "Cargos_Anteriores" }
           ];
         case 2:
@@ -117,27 +128,38 @@ export default {
             { text: "Por Mujeres", value: "PorMujeres1" },
             { text: "Por Mujeres Final", value: "PorMujeresFinal" }
           ];
+        case 5:
+          return [
+            { text: "Partido", value: "Partido" },
+            { text: "Ex Congresistas", value: "ExCongresitas" }
+          ];
       }
     },
     fillData() {
       let etiquetas;
       let data;
-      let data1;
-      let data2;
 
       switch (this.currentResumen.id) {
         case 1:
-          etiquetas = this.currentTabla.map(item => {
-            return item.Cargos_Anteriores;
-          });
-          data = this.currentTabla.map(item => {
-            return item.Candidatos;
-          });
+          etiquetas = this.$store.state.resumen
+            .sort(function(a, b) {
+              return b.Experiencia_Pol - a.Experiencia_Pol;
+            })
+            .map(item => {
+              return item.Partido;
+            });
+          data = this.$store.state.resumen
+            .sort(function(a, b) {
+              return b.Experiencia_Pol - a.Experiencia_Pol;
+            })
+            .map(item => {
+              return item.Experiencia_Pol;
+            });
           this.datacollection = {
             labels: etiquetas,
             datasets: [
               {
-                label: "# de Candidatos",
+                label: "# de candidatos que han ejercido otros cargos electos",
                 backgroundColor: "#f87979",
                 data: data
               }
@@ -145,27 +167,25 @@ export default {
           };
           break;
         case 2:
-          // Filtrando fuera los que solo tienen 1 delito
-          // TODO: quizas hacer que esto solo ocurra en mobile
-          etiquetas = this.currentTabla
-            .filter(item => {
-              return item.Delitos_Penales > 1;
+          etiquetas = this.$store.state.resumen
+            .sort(function(a, b) {
+              return b.Sentencias_Penal - a.Sentencias_Penal;
             })
             .map(item => {
-              return item.strDelitoPenal;
+              return item.Partido;
             });
-          data = this.currentTabla
-            .filter(item => {
-              return item.Delitos_Penales > 1;
+          data = this.$store.state.resumen
+            .sort(function(a, b) {
+              return b.Sentencias_Penal - a.Sentencias_Penal;
             })
             .map(item => {
-              return item.Delitos_Penales;
+              return item.Sentencias_Penal;
             });
           this.datacollection = {
             labels: etiquetas,
             datasets: [
               {
-                label: "# de Candidatos",
+                label: "# de candidatos con sentencias penales declaradas",
                 backgroundColor: "#f87979",
                 data: data
               }
@@ -173,17 +193,25 @@ export default {
           };
           break;
         case 3:
-          etiquetas = this.currentTabla.map(item => {
-            return item.strMateriaSentencia;
-          });
-          data = this.currentTabla.map(item => {
-            return item.Otros_delitos;
-          });
+          etiquetas = this.$store.state.resumen
+            .sort(function(a, b) {
+              return b.Sentencias_otros - a.Sentencias_otros;
+            })
+            .map(item => {
+              return item.Partido;
+            });
+          data = this.$store.state.resumen
+            .sort(function(a, b) {
+              return b.Sentencias_otros - a.Sentencias_otros;
+            })
+            .map(item => {
+              return item.Sentencias_otros;
+            });
           this.datacollection = {
             labels: etiquetas,
             datasets: [
               {
-                label: "# de Candidatos",
+                label: "# de candidatos con otras sentencias declaradas",
                 backgroundColor: "#f87979",
                 data: data
               }
@@ -191,27 +219,53 @@ export default {
           };
           break;
         case 4:
-          etiquetas = this.currentTabla.map(item => {
-            return item.Region;
-          });
-          data1 = this.currentTabla.map(item => {
-            return item.PorMujeres1;
-          });
-          data2 = this.currentTabla.map(item => {
-            return item.PorMujeresFinal;
-          });
+          etiquetas = this.$store.state.resumen
+            .sort(function(a, b) {
+              return b.Mujeres - a.Mujeres;
+            })
+            .map(item => {
+              return item.Partido;
+            });
+          data = this.$store.state.resumen
+            .sort(function(a, b) {
+              return b.Mujeres - a.Mujeres;
+            })
+            .map(item => {
+              return item.Mujeres;
+            });
           this.datacollection = {
             labels: etiquetas,
             datasets: [
               {
-                label: "Por Mujeres",
+                label: "Inclusión de género",
                 backgroundColor: "#f87979",
-                data: data1
-              },
+                data: data
+              }
+            ]
+          };
+          break;
+        case 5:
+          etiquetas = this.$store.state.resumen
+            .sort(function(a, b) {
+              return b.ExCongresitas - a.ExCongresitas;
+            })
+            .map(item => {
+              return item.Partido;
+            });
+          data = this.$store.state.resumen
+            .sort(function(a, b) {
+              return b.ExCongresitas - a.ExCongresitas;
+            })
+            .map(item => {
+              return item.ExCongresitas;
+            });
+          this.datacollection = {
+            labels: etiquetas,
+            datasets: [
               {
-                label: "Por Mujeres Final",
-                backgroundColor: "#9aa15d",
-                data: data2
+                label: "Ex Congresistas",
+                backgroundColor: "#f87979",
+                data: data
               }
             ]
           };
