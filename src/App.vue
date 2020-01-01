@@ -122,7 +122,7 @@
           right
           fab
         >
-          <v-icon>mdi-filter</v-icon>
+          <span class="white--text pl-2">Filtra Aquí</span><v-icon>mdi-filter</v-icon>
         </v-btn>
       </v-fab-transition>
     </v-app-bar>
