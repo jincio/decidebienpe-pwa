@@ -114,7 +114,7 @@
       <v-spacer></v-spacer>
       <v-fab-transition>
         <v-btn
-          v-show="$vuetify.breakpoint.xsOnly"
+          v-show="$vuetify.breakpoint.xsOnly && $route.path.includes('filtros')"
           @click.stop="drawerRight = !drawerRight"
           color="orange darken-4"
           dark
