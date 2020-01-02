@@ -12,7 +12,15 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    listas: listas,
+    listas: listas.sort((a, b) =>
+      a.Partido > b.Partido
+        ? 1
+        : a.Partido === b.Partido
+        ? a.Número > b.Número
+          ? 1
+          : -1
+        : -1
+    ),
     regiones: regiones,
     resumen: resumen,
     t1: t1,
