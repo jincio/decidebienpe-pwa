@@ -14,16 +14,33 @@
           v-on:change="updateURLParams"
         ></v-select>
         <v-layout text-xs-center align-center justify-center>
-          <v-btn
-            @click="onNoFiltrosClicked"
-            class="ma-2"
-            tile
-            outlined
-            color="blue-grey"
-            v-bind:disabled="!currentRegion.region"
-          >
-            <v-icon left>mdi-map-marker-off</v-icon>Quitar Filtros
-          </v-btn>
+          <v-fab-transition>
+            <v-btn
+              v-show="
+                $vuetify.breakpoint.xsOnly && $route.path.includes('filtros')
+              "
+              @click="filterButtonClicked()"
+              color="orange darken-4"
+              dark
+            >
+              <span class="white--text pl-2">Filtra Aquí</span
+              ><v-icon>mdi-filter</v-icon>
+            </v-btn>
+          </v-fab-transition>
+        </v-layout>
+        <v-layout text-xs-center align-center justify-center>
+          <v-fab-transition>
+            <v-btn
+              @click="onNoFiltrosClicked()"
+              class="ma-2"
+              tile
+              outlined
+              color="blue-grey"
+              v-show="noFiltrosUsed()"
+            >
+              <v-icon left>mdi-map-marker-off</v-icon>Quitar Filtros
+            </v-btn>
+          </v-fab-transition>
         </v-layout>
 
         <!-- Container para el boton de Twitter -->
@@ -423,6 +440,9 @@ export default {
     }
   },
   methods: {
+    filterButtonClicked() {
+      EventBus.$emit("button-clicked");
+    },
     reAttachTwitterButton() {
       if (window.twttr) {
         var first =

@@ -112,20 +112,6 @@
         <span class="white--text title">DecideBien.pe</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-fab-transition>
-        <v-btn
-          v-show="$vuetify.breakpoint.xsOnly && $route.path.includes('filtros')"
-          @click.stop="drawerRight = !drawerRight"
-          color="orange darken-4"
-          dark
-          small
-          right
-          fab
-        >
-          <span class="white--text pl-2">Filtra Aquí</span
-          ><v-icon>mdi-filter</v-icon>
-        </v-btn>
-      </v-fab-transition>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" app>
@@ -240,6 +226,12 @@ export default {
         this.$store.commit("updateFiltro10", value);
       }
     }
+  },
+  mounted() {
+    //listening for the custom event
+    EventBus.$on("button-clicked", () => {
+      this.drawerRight = !this.drawerRight;
+    });
   },
   data: () => ({
     drawerRight: null,

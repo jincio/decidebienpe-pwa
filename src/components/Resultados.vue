@@ -34,7 +34,7 @@
       </v-dialog>
     </v-row>
 
-    <v-tabs centered v-model="tabs">
+    <v-tabs centered v-model="tabs" :vertical="this.$vuetify.breakpoint.xsOnly">
       <v-tabs-slider></v-tabs-slider>
       <v-tab class="">Por Organización Política:</v-tab>
       <v-tab class="">Candidatos por {{ showRegion }}:</v-tab>
