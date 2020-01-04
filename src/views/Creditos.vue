@@ -23,6 +23,18 @@
             <li>Ricardo Moran (@RicardoMoran)</li>
             <li>Michele Gabriela Fernandez (@@La_micha)</li>
           </ul>
+          <h4>Desarrolladores:</h4>
+          <h5>Vue version</h5>
+          <ul>
+          <li> Luis Salas (Github: zettai )
+          <li> Antonio Cucho (Github: antoniocuga )
+          </ul>
+          <h5>Shiny version</h5>
+          <ul>
+            <li>José Incio (@jlincio) </li>
+            <li>Malena Maguina (Github: malenamaguina)</li>
+            <li>Samuel Calderon (Github: calderonsamuel )</li>
+          </ul>
         </v-card-text>
       </v-card>
     </v-flex>
