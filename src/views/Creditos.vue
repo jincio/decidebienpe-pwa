@@ -26,20 +26,20 @@
           <h4>Desarrolladores:</h4>
           <h5>Vue version</h5>
           <ul>
-          <li> Luis Salas (Github: zettai )
-          <li> Antonio Cucho (Github: antoniocuga )
+            <li>Luis Salas (Github: zettai)</li>
+            <li>Antonio Cucho (Github: antoniocuga)</li>
           </ul>
           <h5>Shiny version</h5>
           <ul>
-            <li>José Incio (@jlincio) </li>
+            <li>José Incio (@jlincio)</li>
             <li>Malena Maguina (Github: malenamaguina)</li>
-            <li>Samuel Calderon (Github: calderonsamuel )</li>
+            <li>Samuel Calderon (Github: calderonsamuel)</li>
           </ul>
         </v-card-text>
       </v-card>
     </v-flex>
     <v-flex xs12 md6 pt-4>
-      <v-card height="100%" disabled>
+      <v-card height="100%">
         <v-card-title primary-title>
           <div>
             <h1 class="headline">Escríbenos</h1>

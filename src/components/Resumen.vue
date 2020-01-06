@@ -49,10 +49,10 @@ export default {
       datacollection: null,
       currentTabla: [],
       tablasResumen: [
-        { id: 1, value: "Experiencia Política" },
         { id: 2, value: "Sentencias Penales" },
         { id: 3, value: "Otras Sentencias" },
         { id: 4, value: "Inclusión de Género" },
+        { id: 1, value: "Experiencia Política" },
         { id: 5, value: "Ex Congresistas" }
       ],
       currentResumen: []
