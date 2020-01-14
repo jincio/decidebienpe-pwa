@@ -156,6 +156,16 @@
           "
           >Militancia</v-chip
         >
+        <v-chip
+          v-if="f11"
+          class="ma-2"
+          close
+          @click:close="
+            f10 = false;
+            updateURLQuery();
+          "
+          >Agenda.Legislativa</v-chip
+        >
         <v-divider v-show="!$vuetify.breakpoint.xsOnly" />
         <h3
           class="subheading font-weight-regular mb-2 mt2"
@@ -199,7 +209,8 @@
 
           <v-expansion-panel>
             <v-expansion-panel-header>
-              Que no incluya listas con ex-congresistas electos (2016-2019) por:
+              Que no incluya listas del congreso disuelto que fueron electos
+              (2016-2019) por:
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               <v-row>
@@ -270,7 +281,7 @@
 
           <v-expansion-panel>
             <v-expansion-panel-header
-              >¿Que promuevan a sus militantes?</v-expansion-panel-header
+              >¿Que promuevan fortalecer Partidos?</v-expansion-panel-header
             >
             <v-expansion-panel-content>
               <v-row>
@@ -282,6 +293,12 @@
                     :label="
                       `Deseo EXCLUIR listas donde el número 1 no fue electo en democracia interna`
                     "
+                  ></v-checkbox>
+                  <v-checkbox
+                    v-model="f11"
+                    @change="updateURLQuery()"
+                    color="info"
+                    :label="`Excluir partidos sin AGENDA LEGISLATIVA`"
                   ></v-checkbox>
                 </v-col>
               </v-row>
@@ -407,6 +424,14 @@ export default {
         this.$store.commit("updateFiltro10", value);
       }
     },
+    f11: {
+      get() {
+        return this.$store.state.filtros.f11;
+      },
+      set(value) {
+        this.$store.commit("updateFiltro11", value);
+      }
+    },
     noRegionSelected() {
       return !!this.currentRegion.region;
     },
@@ -423,7 +448,8 @@ export default {
           .filter(this.genero1Filter)
           .filter(this.genero2Filter)
           .filter(this.genero3Filter)
-          .filter(this.militantesFilter),
+          .filter(this.militantesFilter)
+          .filter(this.agendaFilter),
         "Partido"
       );
     },
@@ -436,7 +462,8 @@ export default {
         .filter(this.genero1Filter)
         .filter(this.genero2Filter)
         .filter(this.genero3Filter)
-        .filter(this.militantesFilter);
+        .filter(this.militantesFilter)
+        .filter(this.agendaFilter);
     }
   },
   methods: {
@@ -483,7 +510,8 @@ export default {
         this.f7 == false &&
         this.f8 == false &&
         this.f9 == false &&
-        this.f10
+        this.f10 == false &&
+        this.f11 == false
       ) {
         return;
       } else {
@@ -497,6 +525,7 @@ export default {
         this.f8 = false;
         this.f9 = false;
         this.f10 = false;
+        this.f11 = false;
         this.updateURLQuery();
       }
     },
@@ -511,7 +540,8 @@ export default {
         this.f7 ||
         this.f8 ||
         this.f9 ||
-        this.f10
+        this.f10 ||
+        this.f11
       );
     },
     // Este metodo actualiza el url cuando los checkboxes cambian
@@ -536,7 +566,9 @@ export default {
         this.f9 === true ||
         this.f9 === false ||
         this.f10 === true ||
-        this.f10 === false
+        this.f10 === false ||
+        this.f11 === true ||
+        this.f11 === false
       ) {
         // TODO: refactorizar para evitar el error. Baja prioridad.
         // .push bota un error en el console cuando se trata ir al mismo route existente,
@@ -556,7 +588,8 @@ export default {
               f7: this.f7,
               f8: this.f8,
               f9: this.f9,
-              f10: this.f10
+              f10: this.f10,
+              f11: this.f11
             }
           })
           .catch(err => {
@@ -582,7 +615,8 @@ export default {
             f7: this.f7,
             f8: this.f8,
             f9: this.f9,
-            f10: this.f10
+            f10: this.f10,
+            f11: this.f11
           }
         });
       }
@@ -611,6 +645,7 @@ export default {
           this.f8 = queryParams.f8 == "true";
           this.f9 = queryParams.f9 == "true";
           this.f10 = queryParams.f10 == "true";
+          this.f11 = queryParams.f10 == "true";
           this.sendToGA();
           this.reAttachTwitterButton();
         }

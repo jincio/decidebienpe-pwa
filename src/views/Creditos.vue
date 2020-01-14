@@ -26,8 +26,8 @@
           <h4>Desarrolladores:</h4>
           <h5>Vue version</h5>
           <ul>
-            <li>Luis Salas (Github: zettai)</li>
-            <li>Antonio Cucho (Github: antoniocuga)</li>
+            <li>Luis Salas (Github: zettai )</li>
+            <li>Antonio Cucho (Github: antoniocuga )</li>
           </ul>
           <h5>Shiny version</h5>
           <ul>
