@@ -33,7 +33,7 @@
               @change="filterChanged()"
             ></v-checkbox>
 <p class="text-center pb-2">
-              Que no incluya listas del congreso disuelto que fueron electos (2016-2019) por:
+              Que no incluya listas del congreso disuelto  (2016-2019) que fueron electos por:
             </p>
             <v-checkbox
               v-model="f1"
@@ -93,6 +93,15 @@
               color="info"
               :label="
                 `Deseo EXCLUIR listas donde el número 1 no fue electo en democracia interna`
+              "
+              class="caption my-0 py-0 px-3"
+              @change="filterChanged()"
+            ></v-checkbox>
+            <v-checkbox
+              v-model="f11"
+              color="info"
+              :label="
+                `Excluir partidos sin AGENDA LEGISLATIVA (fuente: Transparencia)`
               "
               class="caption my-0 py-0 px-3"
               @change="filterChanged()"
