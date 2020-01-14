@@ -280,7 +280,7 @@
 
           <v-expansion-panel>
             <v-expansion-panel-header
-              >¿Que promuevan a sus militantes?</v-expansion-panel-header
+              >¿Que promuevan fortalecer Partidos?</v-expansion-panel-header
             >
             <v-expansion-panel-content>
               <v-row>
@@ -298,7 +298,7 @@
                     @change="updateURLQuery()"
                     color="info"
                     :label="
-                      `Excluir partidos que no han presentado AGENDA LEGISLATIVA`
+                      `Excluir partidos sin AGENDA LEGISLATIVA`
                     "
                   ></v-checkbox>
                 </v-col>
@@ -511,8 +511,8 @@ export default {
         this.f7 == false &&
         this.f8 == false &&
         this.f9 == false &&
-        this.f10== false &&
-        this.f11
+        this.f10 == false &&
+        this.f11 == false
       ) {
         return;
       } else {
@@ -589,7 +589,7 @@ export default {
               f7: this.f7,
               f8: this.f8,
               f9: this.f9,
-              f10: this.f10
+              f10: this.f10,
               f11: this.f11
             }
           })
@@ -616,7 +616,7 @@ export default {
             f7: this.f7,
             f8: this.f8,
             f9: this.f9,
-            f10: this.f10
+            f10: this.f10,
             f11: this.f11
           }
         });
