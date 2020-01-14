@@ -645,7 +645,7 @@ export default {
           this.f8 = queryParams.f8 == "true";
           this.f9 = queryParams.f9 == "true";
           this.f10 = queryParams.f10 == "true";
-          this.f11 = queryParams.f10 == "true";
+          this.f11 = queryParams.f11 == "true";
           this.sendToGA();
           this.reAttachTwitterButton();
         }
