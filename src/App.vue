@@ -12,7 +12,28 @@
         <v-list-item>
           <v-list-item-content>
             <p class="text-center pb-2">
-              Que no incluya listas con ex-congresistas electos (2016-2019) por:
+              ¿Que los candidatos no tengan sentencias?
+            </p>
+            <v-checkbox
+              v-model="f5"
+              color="info"
+              :label="
+                `Deseo descartar listas que tengan candidat@s con sentencias penales (Declaradas en Hoja de Vida)`
+              "
+              class="caption my-0 py-0 px-3"
+              @change="filterChanged()"
+            ></v-checkbox>
+            <v-checkbox
+              v-model="f6"
+              color="info"
+              :label="
+                `Deseo descartar listas que tengan candidat@s con sentencias alimentarias (Declaradas en Hoja de Vida)`
+              "
+              class="caption my-0 py-0 px-3"
+              @change="filterChanged()"
+            ></v-checkbox>
+<p class="text-center pb-2">
+              Que no incluya listas del congreso disuelto que fueron electos (2016-2019) por:
             </p>
             <v-checkbox
               v-model="f1"
@@ -39,29 +60,6 @@
               v-model="f4"
               color="info"
               :label="`Frente Amplio`"
-              class="caption my-0 py-0 px-3"
-              @change="filterChanged()"
-            ></v-checkbox>
-
-            <p class="text-center pb-2">
-              ¿Que los candidatos no tengan sentencias?
-            </p>
-
-            <v-checkbox
-              v-model="f5"
-              color="info"
-              :label="
-                `Deseo descartar listas que tengan candidat@s con sentencias penales (Declaradas en Hoja de Vida)`
-              "
-              class="caption my-0 py-0 px-3"
-              @change="filterChanged()"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="f6"
-              color="info"
-              :label="
-                `Deseo descartar listas que tengan candidat@s con sentencias alimentarias (Declaradas en Hoja de Vida)`
-              "
               class="caption my-0 py-0 px-3"
               @change="filterChanged()"
             ></v-checkbox>
