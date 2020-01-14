@@ -298,7 +298,7 @@
                     v-model="f11"
                     @change="updateURLQuery()"
                     color="info"
-                    :label="`Excluir partidos sin AGENDA LEGISLATIVA`"
+                    :label="`Excluir partidos sin AGENDA LEGISLATIVA (fuente: Transparencia)`"
                   ></v-checkbox>
                 </v-col>
               </v-row>
