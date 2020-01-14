@@ -232,6 +232,14 @@ export default {
       set(value) {
         this.$store.commit("updateFiltro10", value);
       }
+    },
+    f11: {
+      get() {
+        return this.$store.state.filtros.f11;
+      },
+      set(value) {
+        this.$store.commit("updateFiltro11", value);
+      }
     }
   },
   mounted() {
