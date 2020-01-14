@@ -76,6 +76,13 @@ export default {
         return true;
       }
     },
+    agendaFilter: function(lista) {
+      if (this.f11) {
+        return lista.Agenda == 1;
+      } else {
+        return true;
+      }
+    },    
     regionFilter: function(lista) {
       return lista.Region === this.currentRegion.region;
     },

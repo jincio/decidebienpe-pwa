@@ -37,7 +37,8 @@ export default new Vuex.Store({
       f7: false,
       f8: false,
       f9: false,
-      f10: false
+      f10: false,
+      f11: false
     }
   },
   mutations: {
@@ -70,7 +71,10 @@ export default new Vuex.Store({
     },
     updateFiltro10(state, payload) {
       state.filtros.f10 = payload;
-    }
+    },
+    updateFiltro11(state, payload) {
+      state.filtros.f11 = payload;
+    }    
   },
   actions: {},
   modules: {}
