@@ -87,7 +87,7 @@
               class="caption my-0 py-0 px-3"
               @change="filterChanged()"
             ></v-checkbox>
-            <p class="text-center pb-2">¿Que promuevan a sus militantes?</p>
+            <p class="text-center pb-2">¿Que promuevan fortalecer Partidos?</p>
             <v-checkbox
               v-model="f10"
               color="info"
