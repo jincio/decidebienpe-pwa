@@ -82,7 +82,7 @@ export default {
       } else {
         return true;
       }
-    },    
+    },
     regionFilter: function(lista) {
       return lista.Region === this.currentRegion.region;
     },

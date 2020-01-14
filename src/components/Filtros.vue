@@ -209,7 +209,8 @@
 
           <v-expansion-panel>
             <v-expansion-panel-header>
-              Que no incluya listas del congreso disuelto que fueron electos (2016-2019) por:
+              Que no incluya listas del congreso disuelto que fueron electos
+              (2016-2019) por:
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               <v-row>
@@ -297,9 +298,7 @@
                     v-model="f11"
                     @change="updateURLQuery()"
                     color="info"
-                    :label="
-                      `Excluir partidos sin AGENDA LEGISLATIVA`
-                    "
+                    :label="`Excluir partidos sin AGENDA LEGISLATIVA`"
                   ></v-checkbox>
                 </v-col>
               </v-row>
@@ -541,7 +540,7 @@ export default {
         this.f7 ||
         this.f8 ||
         this.f9 ||
-        this.f10||
+        this.f10 ||
         this.f11
       );
     },
@@ -567,9 +566,9 @@ export default {
         this.f9 === true ||
         this.f9 === false ||
         this.f10 === true ||
-        this.f10 === false||
+        this.f10 === false ||
         this.f11 === true ||
-        this.f11 === false       
+        this.f11 === false
       ) {
         // TODO: refactorizar para evitar el error. Baja prioridad.
         // .push bota un error en el console cuando se trata ir al mismo route existente,

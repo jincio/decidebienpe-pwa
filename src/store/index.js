@@ -74,7 +74,7 @@ export default new Vuex.Store({
     },
     updateFiltro11(state, payload) {
       state.filtros.f11 = payload;
-    }    
+    }
   },
   actions: {},
   modules: {}
