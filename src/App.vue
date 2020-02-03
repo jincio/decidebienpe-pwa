@@ -260,8 +260,7 @@ export default {
         icon: "mdi-file-document-box",
         text: "Resúmen General",
         path: "/resumen"
-      },
-      { icon: "mdi-contact-mail", text: "Créditos", path: "/creditos" }
+      }
     ]
   })
 };
